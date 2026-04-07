@@ -1,0 +1,1699 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Ads UI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <head>
+
+        <!-- Google Fonts -->
+        <!-- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"> -->
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+            rel="stylesheet">
+        <!-- ✅ Tailwind CONFIG (ADD HERE) -->
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        fontFamily: {
+                            sans: ["Poppins", "sans-serif"],
+                        },
+                    },
+                },
+            };
+        </script>
+
+        <!-- ❌ Tailwind CDN (MUST BE AFTER CONFIG) -->
+        <script src="https://cdn.tailwindcss.com"></script>
+
+    </head>
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <style>
+        body {
+            overflow-x: hidden;
+            font-family: "Roboto", sans-serif;
+        }
+
+
+
+        /* Slider card */
+        .card {
+            height: 320px;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            transition: 0.3s;
+        }
+
+        .card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card span {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #06b6d4;
+            backdrop-filter: blur(8px);
+            color: white;
+            /* cyan */
+            font-size: 10px;
+            padding: 4px 10px;
+            border-radius: 5px;
+        }
+
+        /* Swiper */
+        .swiper {
+            width: 100%;
+            padding: 20px 0;
+        }
+
+        .swiper-wrapper {
+            transition-timing-function: linear !important;
+        }
+
+        .mySwiper .swiper-slide {
+            width: 250px !important;
+        }
+
+        .teamSwiper .swiper-slide {
+            width: 400px !important;
+            /* 🔥 control card size */
+        }
+
+        .advertisersSwiper .swiper-slide {
+            width: 350px !important;
+            /* 🔥 control card size */
+        }
+
+
+
+        .swiper-slide-active .card {
+            transform: scale(1.08);
+        }
+
+        /* Arrows */
+        .swiper-button-prev,
+        .swiper-button-next {
+            background: rgba(0, 0, 0, 0.5);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+        .swiper-button-prev::after,
+        .swiper-button-next::after {
+            font-size: 14px;
+            color: white;
+        }
+
+        .badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(6px);
+            color: #06b6d4;
+            /* cyan */
+            font-size: 10px;
+            padding: 4px 10px;
+            border-radius: 999px;
+        }
+
+        #orbitRotate {
+            transition: transform 0.08s linear;
+            will-change: transform;
+        }
+
+        /* SMOOTH ROTATION */
+        #orbitRotate {
+            transform-style: preserve-3d;
+            will-change: transform;
+        }
+
+        /* IMAGE STYLE */
+        .orbit-item {
+            border-radius: 14px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .col {
+            transition: transform 1s ease;
+        }
+
+        .wrapper:hover .scroll-up {
+            transform: translateY(-20%);
+        }
+
+        .wrapper:hover .scroll-down {
+            transform: translateY(20%);
+        }
+    </style>
+</head>
+
+<body class="bg-white">
+
+    <!-- 🔥 HERO -->
+    <section class="text-white h-screen section">
+
+        <!-- 🌈 Light Upsworth Gradient -->
+        <div class="absolute inset-0 bg-gradient-to-br from-white via-cyan-50 to-blue-100"></div>
+        <!-- Grain -->
+        <div class="absolute inset-0 opacity-40"
+            style="background: radial-gradient(circle at center, rgba(0, 200, 255, 0.15), transparent 60%);">
+        </div>
+
+        <!-- Content -->
+        <div class="relative z-10 flex flex-col items-center text-center px-4 pt-24 pb-16 text-gray-900">
+
+            <!-- Small Tagline -->
+            <p class="text-sm text-gray-500 mb-3">
+                Your End-to-End Digital Growth Partner.
+            </p>
+
+            <!-- Heading -->
+            <h1 class="text-5xl md:text-[100px] lg:text-[140px]  leading-tight my-[60px]">
+                AI Ads that <span class="text-cyan-500">win.</span>
+            </h1>
+
+            <!-- Description -->
+            <p class="text-lg md:text-2xl text-gray-600 mb-2">
+                Paste a product URL. Get 10 video ads. Test what converts—automatically.
+            </p>
+
+            <p class="text-sm text-gray-400 mb-10">
+                (yes, it’s really that simple)
+            </p>
+
+            <!-- CTA -->
+
+
+            <button
+                class="relative overflow-hidden group flex items-center gap-2 px-4 py-1 bg-black rounded-xl border-4 border-black">
+
+                <!-- Sliding BG -->
+                <span class="absolute inset-0 bg-cyan-500 
+                  translate-x-[-100%] group-hover:translate-x-0 
+                  transition-transform duration-500 ease-in-out">
+                </span>
+
+                <!-- Icon -->
+                <span
+                    class="relative z-10 bg-cyan-500 w-10 h-10 flex items-center justify-center rounded-lg text-white">
+                    ➤
+                </span>
+
+                <!-- Text -->
+                <span class="relative z-10 text-white font-medium tracking-widest">
+                    CREATE YOUR FIRST AD FREE
+                </span>
+
+            </button>
+
+            <!-- Bottom Info -->
+            <div class="flex flex-wrap justify-center gap-6 mt-6 mb-6 text-sm text-gray-500">
+                <span>✔ No credit card required</span>
+                <span>⭐ Rated 4.8/5 on G2</span>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- 🎞️ SLIDER -->
+    <section class="text-white relative overflow-hidden"">
+        
+        <div class=" relative w-full overflow-hidden">
+
+        <!-- Arrows -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+
+        <div class="swiper mySwiper  px-6">
+            <div class="swiper-wrapper">
+
+                <!-- Slides -->
+                <div class="swiper-slide">
+                    <div class="card">
+                        <div class="rounded-[20px] overflow-hidden">
+                            <video class=" w-full h-[400px] object-cover" autoplay muted loop playsinline>
+                                <source src="videos/batch mode.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <span>AI GENERATED</span>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="card">
+                        <video class="w-full h-[400px] object-cover" autoplay muted loop playsinline>
+                            <source src="videos/avatar.mp4" type="video/mp4">
+                        </video>
+                        <span>AI GENERATED</span>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="card">
+                        <video class="w-full h-[400px] object-cover" autoplay muted loop playsinline>
+                            <source src="videos/asset gen.mp4" type="video/mp4">
+                        </video>
+                        <span>AI GENERATED</span>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="card">
+                        <div class="rounded-[20px] overflow-hidden">
+                            <video class=" w-full h-[400px] object-cover" autoplay muted loop playsinline>
+                                <source src="videos/batch mode.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <span>AI GENERATED</span>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="card">
+                        <video class="w-full h-[400px] object-cover" autoplay muted loop playsinline>
+                            <source src="videos/avatar.mp4" type="video/mp4">
+                        </video>
+                        <span>AI GENERATED</span>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="card">
+                        <video class="w-full h-[400px] object-cover" autoplay muted loop playsinline>
+                            <source src="videos/asset gen.mp4" type="video/mp4">
+                        </video>
+                        <span>AI GENERATED</span>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="card">
+                        <div class="rounded-[20px] overflow-hidden">
+                            <video class=" w-full h-[400px] object-cover" autoplay muted loop playsinline>
+                                <source src="videos/batch mode.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <span>AI GENERATED</span>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="card">
+                        <video class="w-full h-[400px] object-cover" autoplay muted loop playsinline>
+                            <source src="videos/avatar.mp4" type="video/mp4">
+                        </video>
+                        <span>AI GENERATED</span>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="card">
+                        <video class="w-full h-[400px] object-cover" autoplay muted loop playsinline>
+                            <source src="videos/asset gen.mp4" type="video/mp4">
+                        </video>
+                        <span>AI GENERATED</span>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+        </div>
+
+    </section>
+
+    <section class="section p-24 pt-8 text-2xl bg-white">
+
+        <!-- 🔹 Heading -->
+        <p class="text-center text-gray-800 mb-4">
+            Supporting 15000+ Brands and Agencies
+        </p>
+
+        <!-- 🧩 Logos -->
+        <div
+            class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-8 items-center justify-items-center mb-[100px] px-6">
+
+            <img src="/images/company/xlQbNlWRwrdpHlgFQ3zkqZ0iQHM.avif" alt="Client Logo" />
+            <img src="/images/company/ld0Ys8WsQjN1iI1knzyk0CK3cA.avif" alt="Client Logo" />
+            <img src="/images/company/xEDXtnM9wz4iByjkKKxLcuVUE.avif" alt="Client Logo" />
+            <img src="/images//company/RiT6Qg7Tf8nBClz0bLs7X3n7fw.avif" alt="Client Logo" />
+            <img src="/images/company/xlQbNlWRwrdpHlgFQ3zkqZ0iQHM.avif" alt="Client Logo" />
+            <img src="/images/company/ld0Ys8WsQjN1iI1knzyk0CK3cA.avif" alt="Client Logo" />
+            <img src="/images/company/xEDXtnM9wz4iByjkKKxLcuVUE.avif" alt="Client Logo" />
+            <img src="/images//company/RiT6Qg7Tf8nBClz0bLs7X3n7fw.avif" alt="Client Logo" />
+            <img src="/images/company/xlQbNlWRwrdpHlgFQ3zkqZ0iQHM.avif" alt="Client Logo" />
+            <img src="/images/company/ld0Ys8WsQjN1iI1knzyk0CK3cA.avif" alt="Client Logo" />
+            <img src="/images/company/xEDXtnM9wz4iByjkKKxLcuVUE.avif" alt="Client Logo" />
+            <img src="/images//company/RiT6Qg7Tf8nBClz0bLs7X3n7fw.avif" alt="Client Logo" />
+            <img src="/images/company/xlQbNlWRwrdpHlgFQ3zkqZ0iQHM.avif" alt="Client Logo" />
+            <img src="/images/company/ld0Ys8WsQjN1iI1knzyk0CK3cA.avif" alt="Client Logo" />
+
+        </div>
+
+        <!-- 📊 Stats Box -->
+        <div
+            class="max-w-7xl mx-auto bg-gray-50 rounded-2xl shadow-lg grid grid-cols-1 md:grid-cols-3 text-center overflow-hidden">
+
+            <!-- Stat 1 -->
+            <div class="py-12 border-b md:border-b-0 md:border-r border-gray-200">
+                <h2 class="text-5xl font-bold">20M+</h2>
+                <p class="text-gray-500 mt-2">Ads analyzed</p>
+            </div>
+
+            <!-- Stat 2 -->
+            <div class="py-12 border-b md:border-b-0 md:border-r border-gray-200">
+                <h2 class="text-5xl font-bold">10M+</h2>
+                <p class="text-gray-500 mt-2">Ads created</p>
+            </div>
+
+            <!-- Stat 3 -->
+            <div class="py-12">
+                <h2 class="text-5xl font-bold">$650M+</h2>
+                <p class="text-gray-500 mt-2">Ad spend</p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="section py-24 px-4 md:px-0 bg-gay-500">
+
+        <!-- 🔹 Heading -->
+        <div class="text-center mb-16 px-6">
+            <h2 class="text-4xl md:text-5xl mb-4">
+                The #1 AI Ad Platform <br class="hidden md:block" />
+                Built for Performance
+            </h2>
+
+            <p class="text-gray-500 max-w-2xl mx-auto">
+                Turn any product page into a winning video ad—created, tested, and optimized in minutes.
+            </p>
+        </div>
+
+        <!-- 🔥 Content -->
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+
+            <!-- 📱 Left Image -->
+            <!-- LEFT SIDE -->
+            <div class="relative h-[500px] overflow-hidden wrapper shadow">
+
+                <!-- fade effect -->
+                <div class="absolute top-0 w-full h-20 bg-gradient-to-b from-white z-10"></div>
+                <div class="absolute bottom-0 w-full h-20 bg-gradient-to-t from-white z-10"></div>
+
+                <div class="grid grid-cols-3 gap-4">
+
+                    <!-- COLUMN 1 -->
+                    <div class="col scroll-up space-y-4">
+                        <a href="#" class="block bg-white p-2 rounded-xl shadow hover:scale-105 transition">
+                            <img src="https://picsum.photos/200/300?1" class="rounded-lg" />
+                        </a>
+                        <a href="#" class="block bg-white p-2 rounded-xl shadow hover:scale-105 transition">
+                            <img src="https://picsum.photos/200/300?2" class="rounded-lg" />
+                        </a>
+                        <a href="#" class="block bg-white p-2 rounded-xl shadow hover:scale-105 transition">
+                            <img src="https://picsum.photos/200/300?3" class="rounded-lg" />
+                        </a>
+                    </div>
+
+                    <!-- COLUMN 2 (reverse) -->
+                    <div class="col scroll-down space-y-4 mt-10">
+                        <a href="#" class="block bg-white p-2 rounded-xl shadow hover:scale-105 transition">
+                            <img src="https://picsum.photos/200/300?4" class="rounded-lg" />
+                        </a>
+                        <a href="#" class="block bg-white p-2 rounded-xl shadow hover:scale-105 transition">
+                            <img src="https://picsum.photos/200/300?5" class="rounded-lg" />
+                        </a>
+                        <a href="#" class="block bg-white p-2 rounded-xl shadow hover:scale-105 transition">
+                            <img src="https://picsum.photos/200/300?6" class="rounded-lg" />
+                        </a>
+                    </div>
+
+                    <!-- COLUMN 3 -->
+                    <div class="col scroll-up space-y-4">
+                        <a href="#" class="block bg-white p-2 rounded-xl shadow hover:scale-105 transition">
+                            <img src="https://picsum.photos/200/300?7" class="rounded-lg" />
+                        </a>
+                        <a href="#" class="block bg-white p-2 rounded-xl shadow hover:scale-105 transition">
+                            <img src="https://picsum.photos/200/300?8" class="rounded-lg" />
+                        </a>
+                        <a href="#" class="block bg-white p-2 rounded-xl shadow hover:scale-105 transition">
+                            <img src="https://picsum.photos/200/300?9" class="rounded-lg" />
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <!-- 🧠 Right Content -->
+            <div>
+
+                <!-- Label -->
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="bg-cyan-100 text-cyan-600 p-2 rounded-lg">
+                        💻
+                    </div>
+                    <span class="text-cyan-600 font-medium text-sm">DISCOVER</span>
+                </div>
+
+                <!-- Title -->
+                <h3 class="text-3xl font-bold mb-6">
+                    See exactly what's converting in your industry right now
+                </h3>
+
+                <!-- List -->
+                <ul class="space-y-3 text-gray-600 mb-8">
+                    <li>• Browse winning ad templates by industry & platform</li>
+                    <li>• Analyze competitor's actual creative strategy</li>
+                    <li>• Remix proven concepts in seconds</li>
+                </ul>
+
+                <!-- CTA -->
+
+                <button
+                    class="relative overflow-hidden group flex items-center gap-4 px-6 py-1 bg-black rounded-xl border-4 border-black">
+
+                    <!-- 🔥 Sliding Solid Cyan -->
+                    <span class="absolute inset-0 bg-cyan-500 
+                             translate-x-[-100%] group-hover:translate-x-0 
+                             transition-transform duration-500 ease-in-out">
+                    </span>
+
+                    <!-- Icon -->
+                    <span
+                        class="relative z-10 bg-cyan-500 w-12 h-12 flex items-center justify-center rounded-lg text-white">
+                        ➤
+                    </span>
+
+                    <!-- Text -->
+                    <span class="relative z-10 text-white font-medium tracking-widest">
+                        BROWSE ADS
+                    </span>
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="section py-24 bg-white">
+
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2  gap-16 items-center px-6">
+
+            <!-- 🧠 LEFT CONTENT -->
+            <div>
+
+                <!-- Label -->
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="bg-cyan-100 text-cyan-600 p-2 rounded-lg">
+                        ✨
+                    </div>
+                    <span class="text-cyan-600 font-medium text-sm">CREATE</span>
+                </div>
+
+                <!-- Title -->
+                <h3 class="text-5xl md:text-6xl font-bold mb-6">
+                    Every Ad format you need, <br />
+                    one platform
+                </h3>
+
+                <!-- List -->
+                <ul class="space-y-3 text-gray-600 mb-8">
+                    <li>• URL-to-video, image-to-video, or start from scratch</li>
+                    <li>• Pick your style: authentic UGC or polished cinematic</li>
+                    <li>• Batch create a dozen variations at once</li>
+                </ul>
+
+                <!-- CTA -->
+
+                <button
+                    class="relative overflow-hidden group flex items-center gap-4 px-6 py-1 bg-black rounded-xl border-4 border-black">
+
+                    <!-- 🔥 Sliding Solid Cyan -->
+                    <span class="absolute inset-0 bg-cyan-500 
+                             translate-x-[-100%] group-hover:translate-x-0 
+                             transition-transform duration-500 ease-in-out">
+                    </span>
+
+                    <!-- Icon -->
+                    <span
+                        class="relative z-10 bg-cyan-500 w-12 h-12 flex items-center justify-center rounded-lg text-white">
+                        ➤
+                    </span>
+
+                    <!-- Text -->
+                    <span class="relative z-10 text-white font-medium tracking-widest">
+                        START FOR FREE
+                    </span>
+
+                </button>
+
+            </div>
+
+
+            <!-- 🎨 RIGHT COLLAGE -->
+            <div class="relative flex justify-center">
+
+                <!-- Background Card -->
+                <div class="bg-gray-100 rounded-3xl p-6 shadow-lg relative w-[380px] h-[420px] shadow-lg">
+
+                    <!-- Image 1 -->
+                    <img src="https://picsum.photos/150/200?1" class="absolute top-4 left-6 rounded-xl shadow-md" />
+
+                    <!-- Image 2 -->
+                    <img src="https://picsum.photos/150/200?2" class="absolute top-16 right-6 rounded-xl shadow-md" />
+
+                    <!-- Image 3 -->
+                    <img src="https://picsum.photos/150/200?3" class="absolute bottom-6 left-10 rounded-xl shadow-md" />
+
+                    <!-- Image 4 (center focus) -->
+                    <img src="https://picsum.photos/180/240?4"
+                        class="absolute top-20 left-1/2 -translate-x-1/2 rounded-xl shadow-xl border-4 border-white" />
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="section py-24 bg-white">
+
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2  gap-16  items-center px-6">
+
+            <!-- 🎨 LEFT VISUAL -->
+            <div>
+
+                <div
+                    class="relative bg-gradient-to-br from-purple-500 via-pink-400 to-orange-300 rounded-3xl p-6 shadow-lg w-[400px] h-[320px]">
+
+                    <!-- Inner Card -->
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-xl w-full h-full">
+                        <img src="https://picsum.photos/500/400" class="w-full h-full object-cover" />
+                    </div>
+
+                    <!-- Floating Icons -->
+                    <div class="absolute -bottom-6 left-10 bg-white p-3 rounded-xl shadow">📘</div>
+                    <div class="absolute -bottom-6 right-10 bg-white p-3 rounded-xl shadow">📸</div>
+                    <div
+                        class="absolute bottom-10 left-1/2 -translate-x-1/2 bg-white px-4 py-2 rounded-full shadow text-sm">
+                        🚀 Launch
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- 🧠 RIGHT CONTENT -->
+            <div>
+
+                <!-- Label -->
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="bg-cyan-100 text-cyan-600 p-2 rounded-lg">
+                        🔗
+                    </div>
+                    <span class="text-cyan-600 font-medium text-sm">LAUNCH</span>
+                </div>
+
+                <!-- Title -->
+                <h3 class="text-5xl md:text-6xl font-bold mb-6">
+                    Push live to social channels instantly
+                </h3>
+
+                <!-- List -->
+                <ul class="space-y-3 text-gray-600 mb-8">
+                    <li>• Connect your ad accounts once, launch forever</li>
+                    <li>• Auto-optimized for each platform's specs</li>
+                    <li>• Built-in A/B testing across campaigns</li>
+                </ul>
+
+                <!-- CTA -->
+
+                <button
+                    class="relative overflow-hidden group flex items-center gap-4 px-6 py-1 bg-black rounded-xl border-4 border-black">
+
+                    <!-- 🔥 Sliding Solid Cyan -->
+                    <span class="absolute inset-0 bg-cyan-500 
+                             translate-x-[-100%] group-hover:translate-x-0 
+                             transition-transform duration-500 ease-in-out">
+                    </span>
+
+                    <!-- Icon -->
+                    <span
+                        class="relative z-10 bg-cyan-500 w-12 h-12 flex items-center justify-center rounded-lg text-white">
+                        ➤
+                    </span>
+
+                    <!-- Text -->
+                    <span class="relative z-10 text-white font-medium tracking-widest">
+                        CONNECT & LAUNCH
+                    </span>
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="section py-24 bg-white">
+
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center px-6">
+
+            <!-- 🧠 LEFT CONTENT -->
+            <div>
+
+                <!-- Label -->
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="bg-cyan-100 text-cyan-600 p-2 rounded-lg">
+                        📊
+                    </div>
+                    <span class="text-cyan-600 font-medium text-sm">OPTIMIZE</span>
+                </div>
+
+                <!-- Title -->
+                <h3 class="text-5xl md:text-6xl font-bold mb-6">
+                    Track What Works, Kill What Doesn't
+                </h3>
+
+                <!-- List -->
+                <ul class="space-y-3 text-gray-600 mb-8">
+                    <li>• See spend, ROAS, and CTR for every creative</li>
+                    <li>• Compare performance across all your variants</li>
+                    <li>• Know exactly which hooks and angles convert</li>
+                </ul>
+
+                <button
+                    class="relative overflow-hidden group flex items-center gap-4 px-6 py-1 bg-black rounded-xl border-4 border-black">
+
+                    <!-- 🔥 Sliding Solid Cyan -->
+                    <span class="absolute inset-0 bg-cyan-500 
+                             translate-x-[-100%] group-hover:translate-x-0 
+                             transition-transform duration-500 ease-in-out">
+                    </span>
+
+                    <!-- Icon -->
+                    <span
+                        class="relative z-10 bg-cyan-500 w-12 h-12 flex items-center justify-center rounded-lg text-white">
+                        ➤
+                    </span>
+
+                    <!-- Text -->
+                    <span class="relative z-10 text-white font-medium tracking-widest">
+                        VIEW ANALYTICS
+                    </span>
+
+                </button>
+
+            </div>
+
+
+            <!-- 🎨 RIGHT VISUAL (CIRCLE FLOW) -->
+            <!-- RIGHT ANIMATION -->
+            <div id="orbitBox"
+                class="relative w-[420px] h-[420px] mx-auto rounded-3xl shadow-xl overflow-hidden flex items-center justify-center">
+
+                <!-- BACKGROUND -->
+                <img src="https://framerusercontent.com/images/PkFpiIA3q0EVbX4Bd1nDwN6ymE.png"
+                    class="absolute inset-0 w-full h-full object-cover" />
+
+                <!-- ROTATING CIRCLE ONLY -->
+                <div id="orbitRotate" class="absolute w-[300px] h-[300px]">
+                    <img src="https://framerusercontent.com/images/3rcHIbDybmTwNInn1fcj5hB0YM.png"
+                        class="w-full h-full object-contain" />
+                </div>
+
+                <!-- FIXED IMAGES (NOT ROTATING) -->
+
+                <!-- TOP -->
+                <img src="https://framerusercontent.com/images/r3ub469eggafAddZ3MnMBy2nFWo.png"
+                    class="absolute top-[40px] left-1/2 -translate-x-1/2 w-24 rounded-lg shadow-xl" />
+
+                <!-- RIGHT -->
+                <img src="https://framerusercontent.com/images/MLUoERkxBMvoKg4tXNrk56uaBg.png"
+                    class="absolute right-[40px] top-1/2 -translate-y-1/2 w-24 rounded-lg shadow-xl" />
+
+                <!-- BOTTOM -->
+                <img src="https://framerusercontent.com/images/gvFVjisV2Kh40F2NV5xgn3rkE.png"
+                    class="absolute bottom-[30px] left-1/2 -translate-x-1/2 w-24 rounded-lg shadow-xl" />
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="section py-24 relative overflow-hidden bg-white px-2">
+
+        <!-- 🌈 Soft Background Glow -->
+        <div class="absolute inset-0 bg-gradient-to-br from-cyan-50 via-white to-orange-100"></div>
+
+        <div class="relative z-10  mx-auto px-6">
+
+            <!-- 🔹 Heading -->
+            <h2 class="text-4xl text-center mb-12">
+                The complete toolkit for <br /> modern advertisers
+            </h2>
+
+            <div class=" w-full overflow-hidden">
+
+                <div class="swiper advertisersSwiper">
+                    <div class="swiper-wrapper">
+
+                        <!-- Slides -->
+                        <div class="swiper-slide">
+                            <div class="bg-white p-4 rounded-[25px] shadow-lg w-[350px]">
+
+                                <!-- Video -->
+                                <div class="rounded-[20px] overflow-hidden">
+                                    <video class="ad-video w-full h-[400px] object-cover" muted loop playsinline>
+                                        <source src="videos/batch mode.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+
+                                <!-- Content -->
+                                <h2 class="text-2xl py-3 font-bold">Ad Corner</h2>
+                                <p class="text-gray-600 text-sm">
+                                    It is a long established fact that a reader will be distracted by the readable
+                                    content.
+                                </p>
+
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="bg-white p-4 rounded-[25px] shadow-lg w-[350px]">
+
+                                <!-- Video -->
+                                <div class="rounded-[20px] overflow-hidden">
+                                    <video class="ad-video w-full h-[400px] object-cover" muted loop playsinline>
+                                        <source src="videos/batch mode.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+
+                                <!-- Content -->
+                                <h2 class="text-2xl py-3 font-bold">Ad Corner</h2>
+                                <p class="text-gray-600 text-sm">
+                                    It is a long established fact that a reader will be distracted by the readable
+                                    content.
+                                </p>
+
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="bg-white p-4 rounded-[25px] shadow-lg w-[350px]">
+
+                                <!-- Video -->
+                                <div class="rounded-[20px] overflow-hidden">
+                                    <video class="ad-video w-full h-[400px] object-cover" muted loop playsinline>
+                                        <source src="videos/batch mode.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+
+                                <!-- Content -->
+                                <h2 class="text-2xl py-3 font-bold">Ad Corner</h2>
+                                <p class="text-gray-600 text-sm">
+                                    It is a long established fact that a reader will be distracted by the readable
+                                    content.
+                                </p>
+
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="bg-white p-4 rounded-[25px] shadow-lg w-[350px]">
+
+                                <!-- Video -->
+                                <div class="rounded-[20px] overflow-hidden">
+                                    <video class="ad-video w-full h-[400px] object-cover" muted loop playsinline>
+                                        <source src="videos/batch mode.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+
+                                <!-- Content -->
+                                <h2 class="text-2xl py-3 font-bold">Ad Corner</h2>
+                                <p class="text-gray-600 text-sm">
+                                    It is a long established fact that a reader will be distracted by the readable
+                                    content.
+                                </p>
+
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="bg-white p-4 rounded-[25px] shadow-lg w-[350px]">
+
+                                <!-- Video -->
+                                <div class="rounded-[20px] overflow-hidden">
+                                    <video class="ad-video w-full h-[400px] object-cover" muted loop playsinline>
+                                        <source src="videos/batch mode.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+
+                                <!-- Content -->
+                                <h2 class="text-2xl py-3 font-bold">Ad Corner</h2>
+                                <p class="text-gray-600 text-sm">
+                                    It is a long established fact that a reader will be distracted by the readable
+                                    content.
+                                </p>
+
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="bg-white p-4 rounded-[25px] shadow-lg w-[350px]">
+
+                                <!-- Video -->
+                                <div class="rounded-[20px] overflow-hidden">
+                                    <video class="ad-video w-full h-[400px] object-cover" muted loop playsinline>
+                                        <source src="videos/batch mode.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+
+                                <!-- Content -->
+                                <h2 class="text-2xl py-3 font-bold">Ad Corner</h2>
+                                <p class="text-gray-600 text-sm">
+                                    It is a long established fact that a reader will be distracted by the readable
+                                    content.
+                                </p>
+
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="bg-white p-4 rounded-[25px] shadow-lg w-[350px]">
+
+                                <!-- Video -->
+                                <div class="rounded-[20px] overflow-hidden">
+                                    <video class="ad-video w-full h-[400px] object-cover" muted loop playsinline>
+                                        <source src="videos/batch mode.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+
+                                <!-- Content -->
+                                <h2 class="text-2xl py-3 font-bold">Ad Corner</h2>
+                                <p class="text-gray-600 text-sm">
+                                    It is a long established fact that a reader will be distracted by the readable
+                                    content.
+                                </p>
+
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="bg-white p-4 rounded-[25px] shadow-lg w-[350px]">
+
+                                <!-- Video -->
+                                <div class="rounded-[20px] overflow-hidden">
+                                    <video class="ad-video w-full h-[400px] object-cover" muted loop playsinline>
+                                        <source src="videos/batch mode.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+
+                                <!-- Content -->
+                                <h2 class="text-2xl py-3 font-bold">Ad Corner</h2>
+                                <p class="text-gray-600 text-sm">
+                                    It is a long established fact that a reader will be distracted by the readable
+                                    content.
+                                </p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+
+    <section class="section py-24 bg-white ">
+
+        <div
+            class="min-h-[600px] max-w-7xl border mx-auto bg-gray-50 rounded-3xl shadow-md px-10 py-8 grid md:grid-cols-2 gap-10 divide-x items-center">
+
+            <!-- 🔹 LEFT SIDE -->
+            <div>
+
+                <!-- Heading -->
+                <h2 class="text-5xl md:text-6xl font-bolder mb-8">
+                    Real Results
+                </h2>
+
+                <!-- Icon / Image -->
+                <img src="https://picsum.photos/200/200" class="mb-6" />
+
+                <!-- Footer text -->
+                <p class="text-sm text-gray-500">
+                    *Sources: Meta, Wistia, HubSpot, Creatify benchmarks
+                </p>
+
+            </div>
+
+
+            <!-- 🔹 RIGHT SIDE -->
+            <div class="divide-y pl-10">
+
+                <!-- Item 1 -->
+                <div class="flex items-center justify-between py-6">
+                    <h3 class="text-5xl md:text-6xl font-bold">2.7x</h3>
+                    <p class="text-gray-600 text-right">
+                        More leads vs. static image ads
+                    </p>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="flex items-center justify-between py-6">
+                    <h3 class="text-5xl md:text-6xl font-bold">1.7x</h3>
+                    <p class="text-gray-600 text-right">
+                        Higher ROI*
+                    </p>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="flex items-center justify-between py-6">
+                    <h3 class="text-5xl md:text-6xl font-bold">90%</h3>
+                    <p class="text-gray-600 text-right">
+                        Lower production cost
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="section py-24 relative overflow-hidden bg-white h-[calc(100vh-200px)]">
+
+        <!-- 🌈 Soft Upsworth Glow -->
+        <div class="absolute inset-0 bg-gradient-to-br from-white via-cyan-50 to-blue-100"></div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-6">
+
+            <!-- 🔹 Header -->
+            <div class="flex items-center justify-between mb-12">
+
+                <h2 class="text-4xl md:text-5xl font-bold">
+                    How Creatify helps real teams
+                </h2>
+
+                <!-- Arrows -->
+                <div class="flex gap-3">
+                    <div
+                        class="swiper-button-prev-custom cursor-pointer w-10 h-10 bg-black text-white rounded-lg flex items-center justify-center">
+                        ◀
+                    </div>
+                    <div
+                        class="swiper-button-next-custom cursor-pointer w-10 h-10 bg-black text-white rounded-lg flex items-center justify-center">
+                        ▶
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- 🔥 SLIDER -->
+            <div class="swiper teamSwiper">
+
+                <div class="swiper-wrapper">
+
+                    <!-- CARD -->
+                    <div class="swiper-slide">
+
+                        <div class="bg-white rounded-3xl p-6 shadow-md">
+
+                            <!-- 🔹 TOP BOX -->
+                            <div class="bg-gray-100 rounded-2xl p-5 h-[200px] flex flex-col justify-between">
+
+                                <!-- Badge -->
+                                <span class="w-fit bg-cyan-200 text-cyan-600 text-xs px-3 py-1 rounded-[5px]">
+                                    E-AGENCY
+                                </span>
+
+                                <!-- Stats -->
+                                <div class="grid grid-cols-2 gap-6 mt-4">
+
+                                    <div>
+                                        <h3 class="text-4xl font-bold leading-none">45%</h3>
+                                        <p class="text-sm text-gray-600 mt-2">CPA Reduction</p>
+                                    </div>
+
+                                    <div>
+                                        <h3 class="text-4xl font-bold leading-none">73%</h3>
+                                        <p class="text-sm text-gray-600 mt-2">ROAS Improvement</p>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <!-- 🔹 LOGO -->
+                            <div class="my-6 flex items-center">
+                                <img src="https://framerusercontent.com/images/FuhhluQWSt6bF9a2wxty10s4BI.jpg?scale-down-to=512&width=991&height=197"
+                                    class="h-6 object-contain" />
+                            </div>
+
+                            <!-- 🔹 LINK -->
+                            <a href="#" class="text-indigo-600 text-sm mt-6 inline-flex items-center gap-2 font-medium">
+                                READ MORE →
+                            </a>
+
+                        </div>
+                    </div>
+
+
+                    <!-- CARD 2 -->
+                    <div class="swiper-slide">
+
+                        <div class="bg-white rounded-3xl p-6 shadow-md">
+
+                            <!-- 🔹 TOP BOX -->
+                            <div class="bg-gray-100 rounded-2xl p-5 h-[200px] flex flex-col justify-between">
+
+                                <!-- Badge -->
+                                <span class="w-fit bg-cyan-200 text-cyan-600 text-xs px-3 py-1 rounded-[5px]">
+                                    E-COMMERCE
+                                </span>
+
+                                <!-- Stats -->
+                                <div class="grid grid-cols-2 gap-6 mt-4">
+
+                                    <div>
+                                        <h3 class="text-4xl font-bold leading-none">669%</h3>
+                                        <p class="text-sm text-gray-600 mt-2">Adoption growth</p>
+                                    </div>
+
+                                    <div>
+                                        <h3 class="text-4xl font-bold leading-none">200k+</h3>
+                                        <p class="text-sm text-gray-600 mt-2">Ads generated</p>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <!-- 🔹 LOGO -->
+                            <div class="my-6 flex items-center">
+                                <img src="https://framerusercontent.com/images/WVIy1UitdNIEsgnYC8Yvvu5c9I.png?scale-down-to=512&width=3840&height=803"
+                                    class="h-6 object-contain" />
+                            </div>
+
+                            <!-- 🔹 LINK -->
+                            <a href="#" class="text-indigo-600 text-sm mt-6 inline-flex items-center gap-2 font-medium">
+                                READ MORE →
+                            </a>
+
+                        </div>
+                    </div>
+
+
+                    <!-- CARD 3 -->
+                    <div class="swiper-slide">
+                        <div class="bg-white rounded-3xl p-6 shadow-md">
+
+                            <!-- 🔹 TOP BOX -->
+                            <div class="bg-gray-100 rounded-2xl p-5 h-[200px] flex flex-col justify-between">
+
+                                <!-- Badge -->
+                                <span class="w-fit bg-cyan-200 text-cyan-600 text-xs px-3 py-1 rounded-[5px]">
+                                    AGENCY
+                                </span>
+
+                                <!-- Stats -->
+                                <div class="grid grid-cols-2 gap-6 mt-4">
+
+                                    <div>
+                                        <h3 class="text-4xl font-bold leading-none">45%</h3>
+                                        <p class="text-sm text-gray-600 mt-2">CPA Reduction</p>
+                                    </div>
+
+                                    <div>
+                                        <h3 class="text-4xl font-bold leading-none">73%</h3>
+                                        <p class="text-sm text-gray-600 mt-2">ROAS Improvement</p>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <!-- 🔹 LOGO -->
+                            <div class="my-6 flex items-center">
+                                <img src="https://framerusercontent.com/images/V4830Cjd3mfN4gqdQjF6rkd5s.png?scale-down-to=512&width=800&height=336"
+                                    class="h-6 object-contain" />
+                            </div>
+
+                            <!-- 🔹 LINK -->
+                            <a href="#" class="text-indigo-600 text-sm mt-6 inline-flex items-center gap-2 font-medium">
+                                READ MORE →
+                            </a>
+
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="bg-white rounded-3xl p-6 shadow-md">
+
+                            <!-- 🔹 TOP BOX -->
+                            <div class="bg-gray-100 rounded-2xl p-5 h-[200px] flex flex-col justify-between">
+
+                                <!-- Badge -->
+                                <span class="w-fit bg-cyan-200 text-cyan-600 text-xs px-3 py-1 rounded-[5px]">
+                                    AGENCY
+                                </span>
+
+                                <!-- Stats -->
+                                <div class="grid grid-cols-2 gap-6 mt-4">
+
+                                    <div>
+                                        <h3 class="text-4xl font-bold leading-none">45%</h3>
+                                        <p class="text-sm text-gray-600 mt-2">CPA Reduction</p>
+                                    </div>
+
+                                    <div>
+                                        <h3 class="text-4xl font-bold leading-none">73%</h3>
+                                        <p class="text-sm text-gray-600 mt-2">ROAS Improvement</p>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <!-- 🔹 LOGO -->
+                            <div class="my-6 flex items-center">
+                                <img src="https://framerusercontent.com/images/V4830Cjd3mfN4gqdQjF6rkd5s.png?scale-down-to=512&width=800&height=336"
+                                    class="h-6 object-contain" />
+                            </div>
+
+                            <!-- 🔹 LINK -->
+                            <a href="#" class="text-indigo-600 text-sm mt-6 inline-flex items-center gap-2 font-medium">
+                                READ MORE →
+                            </a>
+
+                        </div>
+                    </div>
+
+
+                    <div class="swiper-slide">
+                        <div class="bg-white rounded-3xl p-6 shadow-md">
+
+                            <!-- 🔹 TOP BOX -->
+                            <div class="bg-gray-100 rounded-2xl p-5 h-[200px] flex flex-col justify-between">
+
+                                <!-- Badge -->
+                                <span class="w-fit bg-cyan-200 text-cyan-600 text-xs px-3 py-1 rounded-[5px]">
+                                    AGENCY
+                                </span>
+
+                                <!-- Stats -->
+                                <div class="grid grid-cols-2 gap-6 mt-4">
+
+                                    <div>
+                                        <h3 class="text-4xl font-bold leading-none">45%</h3>
+                                        <p class="text-sm text-gray-600 mt-2">CPA Reduction</p>
+                                    </div>
+
+                                    <div>
+                                        <h3 class="text-4xl font-bold leading-none">73%</h3>
+                                        <p class="text-sm text-gray-600 mt-2">ROAS Improvement</p>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <!-- 🔹 LOGO -->
+                            <div class="my-6 flex items-center">
+                                <img src="https://framerusercontent.com/images/V4830Cjd3mfN4gqdQjF6rkd5s.png?scale-down-to=512&width=800&height=336"
+                                    class="h-6 object-contain" />
+                            </div>
+
+                            <!-- 🔹 LINK -->
+                            <a href="#" class="text-indigo-600 text-sm mt-6 inline-flex items-center gap-2 font-medium">
+                                READ MORE →
+                            </a>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="section py-24 bg-white">
+
+        <div class="max-w-7xl mx-auto px-6">
+
+            <!-- 🔹 Heading -->
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">
+                    Read the latest
+                </h2>
+                <p class="text-gray-500 text-lg">
+                    Ideas, insights, and creative tips from the Creatify team.
+                </p>
+            </div>
+
+            <!-- 🔥 Blog Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- CARD -->
+                <div class="group">
+
+                    <!-- Image -->
+                    <div class="rounded-2xl overflow-hidden">
+                        <img src="https://picsum.photos/600/350"
+                            class="w-full h-[220px] object-cover group-hover:scale-105 transition duration-500" />
+                    </div>
+
+                    <!-- Tag -->
+                    <span class="inline-block mt-4 bg-cyan-100 text-cyan-600 text-xs px-3 py-1 rounded-full">
+                        VIDEO MARKETING
+                    </span>
+
+                    <!-- Title -->
+                    <h3 class="text-xl font-semibold mt-4 leading-snug group-hover:text-cyan-600 transition">
+                        8 top D-ID competitors & alternatives in 2026
+                    </h3>
+
+                    <!-- Date -->
+                    <div class="flex items-center gap-2 mt-4 text-gray-500 text-sm">
+                        <span class="text-cyan-500">➤</span>
+                        <span>Mar 23, 2026</span>
+                    </div>
+
+                </div>
+
+
+                <!-- CARD 2 -->
+                <div class="group">
+
+                    <div class="rounded-2xl overflow-hidden">
+                        <img src="https://picsum.photos/601/350"
+                            class="w-full h-[220px] object-cover group-hover:scale-105 transition duration-500" />
+                    </div>
+
+                    <span class="inline-block mt-4 bg-cyan-100 text-cyan-600 text-xs px-3 py-1 rounded-full">
+                        VIDEO MARKETING
+                    </span>
+
+                    <h3 class="text-xl font-semibold mt-4 leading-snug group-hover:text-cyan-600 transition">
+                        Dropshipping in 2026: the one bottleneck that automation still hasn't touched
+                    </h3>
+
+                    <div class="flex items-center gap-2 mt-4 text-gray-500 text-sm">
+                        <span class="text-cyan-500">➤</span>
+                        <span>Mar 19, 2026</span>
+                    </div>
+
+                </div>
+
+
+                <!-- CARD 3 -->
+                <div class="group">
+
+                    <div class="rounded-2xl overflow-hidden">
+                        <img src="https://picsum.photos/602/350"
+                            class="w-full h-[220px] object-cover group-hover:scale-105 transition duration-500" />
+                    </div>
+
+                    <span class="inline-block mt-4 bg-cyan-100 text-cyan-600 text-xs px-3 py-1 rounded-full">
+                        VIDEO MARKETING
+                    </span>
+
+                    <h3 class="text-xl font-semibold mt-4 leading-snug group-hover:text-cyan-600 transition">
+                        What is UGC content? Meaning, examples, and tips for marketers
+                    </h3>
+
+                    <div class="flex items-center gap-2 mt-4 text-gray-500 text-sm">
+                        <span class="text-cyan-500">➤</span>
+                        <span>Mar 17, 2026</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="section py-24 relative overflow-hidden bg-white">
+
+        <!-- 🌈 Soft Background Glow -->
+        <div class="absolute inset-0 bg-gradient-to-br from-cyan-50 via-white to-orange-100"></div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-6">
+
+            <!-- 🔹 Heading -->
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16">
+                Trust and compliance
+            </h2>
+
+            <!-- 🔥 GRID -->
+            <div class="grid md:grid-cols-3 gap-6 mb-[30px]">
+
+                <!-- CARD 1 -->
+                <div class="bg-white rounded-[25px] px-6 py-10 shadow-md">
+                    <h3 class="text-xl font-semibold mb-3">Industry</h3>
+                    <p class="text-gray-500 text-sm mb-6">
+                        We’ve earned 40+ badges and hold a 4.8/5 rating on G2.
+                    </p>
+
+                    <!-- Badges -->
+                    <div class="flex gap-3 mb-6 flex-wrap">
+                        <img src="https://picsum.photos/60" class="h-10 rounded" />
+                        <img src="https://picsum.photos/61" class="h-10 rounded" />
+                        <img src="https://picsum.photos/62" class="h-10 rounded" />
+                        <img src="https://picsum.photos/63" class="h-10 rounded" />
+                    </div>
+
+                    <a href="#" class="text-cyan-600 text-sm font-medium">
+                        LEARN MORE →
+                    </a>
+                </div>
+
+
+                <!-- CARD 2 -->
+                <div class="bg-white rounded-[25px] px-6 py-10 shadow-md">
+                    <h3 class="text-xl font-semibold mb-3">Media</h3>
+                    <p class="text-gray-500 text-sm mb-6">
+                        Featured in Fast Company, Bloomberg, and TechCrunch.
+                    </p>
+
+                    <div class="flex items-center gap-4 mb-6">
+                        <img src="https://picsum.photos/50" class="h-10 rounded-full" />
+                        <img src="https://picsum.photos/51" class="h-10 rounded-full" />
+                        <img src="https://picsum.photos/52" class="h-10 rounded-full" />
+                    </div>
+
+                    <a href="#" class="text-cyan-600 text-sm font-medium">
+                        LEARN MORE →
+                    </a>
+                </div>
+
+
+                <!-- CARD 3 -->
+                <div class="bg-white rounded-[25px] px-6 py-10 shadow-md">
+                    <h3 class="text-xl font-semibold mb-3">Compliance</h3>
+                    <p class="text-gray-500 text-sm mb-6">
+                        Enterprise-grade security including SOC 2 Type II.
+                    </p>
+
+                    <img src="https://picsum.photos/80" class="h-12 mb-6" />
+
+                    <a href="#" class="text-cyan-600 text-sm font-medium">
+                        DOWNLOAD →
+                    </a>
+                </div>
+
+            </div>
+
+
+            <!-- 🔥 SECOND ROW -->
+            <div class="grid md:grid-cols-2 gap-6 ">
+
+                <!-- CARD 4 -->
+                <div class="bg-white rounded-[25px] px-6 py-20 shadow-md border">
+                    <h3 class="text-2xl font-semibold mb-3">
+                        Compatible with Platforms
+                    </h3>
+                    <p class="text-gray-500 text-sm mb-6">
+                        Works with Meta, TikTok, YouTube, Snap, Amazon and more.
+                    </p>
+
+                    <!-- Icons -->
+                    <div class="flex items-center  mb-8">
+
+                        <!-- 1 -->
+                        <div class="w-20 h-20 rounded-full overflow-hidden border-4 border-white bg-gray-200 z-10">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Meta_Platforms_Logo.svg"
+                                class="w-full h-full object-cover" />
+                        </div>
+
+                        <!-- 2 -->
+                        <div class="w-20 h-20 rounded-full overflow-hidden border-4 border-white bg-black -ml-6 z-20">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/Adobe_Creative_Cloud_rainbow_icon.svg"
+                                class="w-full h-full object-cover" />
+                        </div>
+
+                        <!-- 3 -->
+                        <div class="w-20 h-20 rounded-full overflow-hidden border-4 border-white bg-black -ml-6 z-30">
+                            <img src="https://upload.wikimedia.org/wikipedia/en/a/a9/TikTok_logo.svg"
+                                class="w-full h-full object-cover" />
+                        </div>
+
+                        <!-- 4 -->
+                        <div
+                            class="w-20 h-20 rounded-full overflow-hidden border-4 border-white bg-blue-600 -ml-6 z-40">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png"
+                                class="w-full h-full object-cover" />
+                        </div>
+
+                        <!-- 5 -->
+                        <div class="w-20 h-20 rounded-full overflow-hidden border-4 border-white bg-red-500 -ml-6 z-50">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg"
+                                class="w-full h-full object-cover" />
+                        </div>
+
+                    </div>
+
+                    <a href="#" class="text-cyan-600 text-sm font-medium">
+                        LEARN MORE →
+                    </a>
+                </div>
+
+
+                <!-- CARD 5 -->
+                <div class="bg-white rounded-[25px] px-6 py-20 shadow-md">
+                    <h3 class="text-2xl font-semibold mb-3">Investors</h3>
+                    <p class="text-gray-500 text-sm mb-6">
+                        Backed by top investors like WndrCo and Comcast Ventures.
+                    </p>
+
+                    <!-- Icons -->
+                    <div class="flex items-center mb-8">
+
+                        <!-- 1 -->
+                        <div class="w-20 h-20 rounded-full overflow-hidden border-4 border-white bg-gray-200 z-10">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Meta_Platforms_Logo.svg"
+                                class="w-full h-full object-cover" />
+                        </div>
+
+                        <!-- 2 -->
+                        <div class="w-20 h-20 rounded-full overflow-hidden border-4 border-white bg-black -ml-6 z-20">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/Adobe_Creative_Cloud_rainbow_icon.svg"
+                                class="w-full h-full object-cover" />
+                        </div>
+
+                        <!-- 3 -->
+                        <div class="w-20 h-20 rounded-full overflow-hidden border-4 border-white bg-black -ml-6 z-30">
+                            <img src="https://upload.wikimedia.org/wikipedia/en/a/a9/TikTok_logo.svg"
+                                class="w-full h-full object-cover" />
+                        </div>
+
+                        <!-- 4 -->
+                        <div
+                            class="w-20 h-20 rounded-full overflow-hidden border-4 border-white bg-blue-600 -ml-6 z-40">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png"
+                                class="w-full h-full object-cover" />
+                        </div>
+
+                        <!-- 5 -->
+                        <div class="w-20 h-20 rounded-full overflow-hidden border-4 border-white bg-red-500 -ml-6 z-50">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg"
+                                class="w-full h-full object-cover" />
+                        </div>
+
+                    </div>
+
+
+                    <a href="#" class="text-cyan-600 text-sm font-medium">
+                        LEARN MORE →
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            slidesPerView: 'auto',
+            spaceBetween: 20,
+            centeredSlides: false,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
+    </script>
+
+    <script>
+        const teamSwiper = new Swiper(".teamSwiper", {
+            slidesPerView: 'auto',
+            spaceBetween: 20,
+            loop: true,
+
+            navigation: {
+                nextEl: ".swiper-button-next-custom",
+                prevEl: ".swiper-button-prev-custom",
+            },
+
+            breakpoints: {
+                640: { slidesPerView: 2 },
+                1024: { slidesPerView: 3 },
+                1280: { slidesPerView: 4 },
+            },
+        });
+    </script>
+
+    <script>
+        const advertisersSwiper = new Swiper(".advertisersSwiper", {
+            slidesPerView: 'auto',
+            spaceBetween: 15,
+            loop: true,
+
+            speed: 5000, // 🔥 higher = smoother continuous movement
+
+            autoplay: {
+                delay: 0, // ❌ remove gap between slides
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+            },
+
+            breakpoints: {
+                640: { slidesPerView: 2 },
+                1024: { slidesPerView: 3 },
+                1280: { slidesPerView: 4 },
+            },
+        });
+
+        // 🎬 Hover Play Logic
+        document.querySelectorAll(".swiper-slide").forEach((slide) => {
+            const video = slide.querySelector(".ad-video");
+
+            slide.addEventListener("mouseenter", () => {
+                if (video) video.play();
+            });
+
+            slide.addEventListener("mouseleave", () => {
+                if (video) {
+                    video.pause();
+                    video.currentTime = 0; // optional reset
+                }
+            });
+        });
+    </script>
+
+    <script>
+        const box = document.getElementById("orbitBox");
+        const rotate = document.getElementById("orbitRotate");
+
+        box.addEventListener("mousemove", (e) => {
+            const rect = box.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const centerX = rect.width / 2;
+
+            // only rotate circle
+            // rotateZ = ((x - centerX) / centerX) * 40;
+            const rotateZ = ((x - centerX) / centerX) * 100;
+
+            rotate.style.transform = `rotate(${rotateZ}deg)`;
+        });
+
+        box.addEventListener("mouseleave", () => {
+            rotate.style.transform = "rotate(0deg)";
+        });
+    </script>
+
+    <script type="module">
+        import { animate, inView, stagger } from "https://cdn.jsdelivr.net/npm/motion@10.16.2/+esm";
+
+        const sections = document.querySelectorAll(".section");
+
+        sections.forEach((section, index) => {
+
+            // Initial state (NO BLUR)
+            section.style.opacity = 0;
+            section.style.transform = "translateY(60px) scale(0.97)";
+
+            inView(section, () => {
+
+                // Main animation (NO BLUR)
+                animate(
+                    section,
+                    {
+                        opacity: [0, 1],
+                        transform: [
+                            "translateY(60px) scale(0.97)",
+                            "translateY(0px) scale(1)"
+                        ]
+                    },
+                    {
+                        duration: 0.5,
+                        delay: index * 0.1,
+                        easing: "ease-out"
+                    }
+                );
+
+                // Child animation
+                const items = section.querySelectorAll(".animate-item");
+
+                if (items.length) {
+                    animate(
+                        items,
+                        {
+                            opacity: [0, 1],
+                            transform: ["translateY(15px)", "translateY(0px)"]
+                        },
+                        {
+                            delay: stagger(0.08),
+                            duration: 0.4
+                        }
+                    );
+                }
+
+                return () => { };
+            });
+
+        });
+    </script>
+
+</body>
+
+</html>
