@@ -7,26 +7,25 @@
     <title>AI Ads UI</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-     <!-- Google Fonts -->
-        <!-- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"> -->
-        <link
-            href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
-            rel="stylesheet">
-        <!-- ✅ Tailwind CONFIG (ADD HERE) -->
-        <script>
-            tailwind.config = {
-                theme: {
-                    extend: {
-                        fontFamily: {
-                            sans: ["Poppins", "sans-serif"],
-                        },
+    <!-- Google Fonts -->
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"> -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <!-- ✅ Tailwind CONFIG (ADD HERE) -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ["Poppins", "sans-serif"],
                     },
                 },
-            };
-        </script>
+            },
+        };
+    </script>
 
-        <!-- ❌ Tailwind CDN (MUST BE AFTER CONFIG) -->
-        <script src="https://cdn.tailwindcss.com"></script>
+    <!-- ❌ Tailwind CDN (MUST BE AFTER CONFIG) -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
@@ -35,6 +34,7 @@
             overflow-x: hidden;
             font-family: "Roboto", sans-serif;
         }
+
         /* Slider card */
         .card {
             height: 320px;
@@ -78,7 +78,7 @@
         }
 
         .teamSwiper .swiper-slide {
-            width: 500px !important;
+            width: 370px !important;
             /* 🔥 control card size */
         }
 
@@ -198,8 +198,7 @@
                 </span>
 
                 <!-- Icon -->
-                <span
-                    class="relative z-10 bg-cyan-500 w-12 h-12 flex items-center justify-center rounded text-white">
+                <span class="relative z-10 bg-cyan-500 w-12 h-12 flex items-center justify-center rounded text-white">
                     ➤
                 </span>
 
@@ -222,10 +221,10 @@
             <!-- Arrows -->
             <div class="swiper-button-prev"></div>
             <div class="swiper-button-next"></div>
-    
+
             <div class="swiper mySwiper  px-6">
                 <div class="swiper-wrapper">
-    
+
                     <!-- Slides -->
                     <div class="swiper-slide">
                         <div class="card">
@@ -237,7 +236,7 @@
                             <span>AI GENERATED</span>
                         </div>
                     </div>
-    
+
                     <div class="swiper-slide">
                         <div class="card">
                             <video class="w-full h-[400px] object-cover" autoplay muted loop playsinline>
@@ -246,7 +245,7 @@
                             <span>AI GENERATED</span>
                         </div>
                     </div>
-    
+
                     <div class="swiper-slide">
                         <div class="card">
                             <video class="w-full h-[400px] object-cover" autoplay muted loop playsinline>
@@ -255,7 +254,7 @@
                             <span>AI GENERATED</span>
                         </div>
                     </div>
-    
+
                     <div class="swiper-slide">
                         <div class="card">
                             <div class="rounded-[20px] overflow-hidden">
@@ -266,7 +265,7 @@
                             <span>AI GENERATED</span>
                         </div>
                     </div>
-    
+
                     <div class="swiper-slide">
                         <div class="card">
                             <video class="w-full h-[400px] object-cover" autoplay muted loop playsinline>
@@ -275,7 +274,7 @@
                             <span>AI GENERATED</span>
                         </div>
                     </div>
-    
+
                     <div class="swiper-slide">
                         <div class="card">
                             <video class="w-full h-[400px] object-cover" autoplay muted loop playsinline>
@@ -284,7 +283,7 @@
                             <span>AI GENERATED</span>
                         </div>
                     </div>
-    
+
                     <div class="swiper-slide">
                         <div class="card">
                             <div class="rounded-[20px] overflow-hidden">
@@ -295,7 +294,7 @@
                             <span>AI GENERATED</span>
                         </div>
                     </div>
-    
+
                     <div class="swiper-slide">
                         <div class="card">
                             <video class="w-full h-[400px] object-cover" autoplay muted loop playsinline>
@@ -304,7 +303,7 @@
                             <span>AI GENERATED</span>
                         </div>
                     </div>
-    
+
                     <div class="swiper-slide">
                         <div class="card">
                             <video class="w-full h-[400px] object-cover" autoplay muted loop playsinline>
@@ -313,12 +312,12 @@
                             <span>AI GENERATED</span>
                         </div>
                     </div>
-    
-    
+
+
                 </div>
             </div>
-    
-            </div>
+
+        </div>
     </section>
 
     <!-- 🎞️ SLIDER -->
@@ -339,20 +338,34 @@
         <div
             class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-8 items-center justify-items-center mb-[100px] px-6">
 
-            <img src="https://framerusercontent.com/images/xlQbNlWRwrdpHlgFQ3zkqZ0iQHM.png?width=494&height=246" alt="Client Logo" />
-            <img src="https://framerusercontent.com/images/ld0Ys8WsQjN1iI1knzyk0CK3cA.png?width=494&height=246" alt="Client Logo" />
-            <img src="https://framerusercontent.com/images/xEDXtnM9wz4iByjkKKxLcuVUE.png?width=494&height=246" alt="Client Logo" />
-            <img src="https://framerusercontent.com/images/sW0rzENbWCTNU9gxplB8irrdOBw.png?width=494&height=246" alt="Client Logo" />
-            <img src=https://framerusercontent.com/images/RiT6Qg7Tf8nBClz0bLs7X3n7fw.png?width=494&height=246" alt="Client Logo" />
-            <img src="https://framerusercontent.com/images/IpPLiEx5qHXVFQwgGeOMcDIgaiM.png?width=494&height=246" alt="Client Logo" />
-            <img src="https://framerusercontent.com/images/xlQbNlWRwrdpHlgFQ3zkqZ0iQHM.png?width=494&height=246" alt="Client Logo" />
-            <img src="https://framerusercontent.com/images/ld0Ys8WsQjN1iI1knzyk0CK3cA.png?width=494&height=246" alt="Client Logo" />
-            <img src="https://framerusercontent.com/images/xEDXtnM9wz4iByjkKKxLcuVUE.png?width=494&height=246" alt="Client Logo" />
-            <img src="https://framerusercontent.com/images/sW0rzENbWCTNU9gxplB8irrdOBw.png?width=494&height=246" alt="Client Logo" />
-            <img src=https://framerusercontent.com/images/RiT6Qg7Tf8nBClz0bLs7X3n7fw.png?width=494&height=246" alt="Client Logo" />
-            <img src="https://framerusercontent.com/images/IpPLiEx5qHXVFQwgGeOMcDIgaiM.png?width=494&height=246" alt="Client Logo" />
-            <img src="https://framerusercontent.com/images/sW0rzENbWCTNU9gxplB8irrdOBw.png?width=494&height=246" alt="Client Logo" />
-            <img src=https://framerusercontent.com/images/RiT6Qg7Tf8nBClz0bLs7X3n7fw.png?width=494&height=246" alt="Client Logo" />
+            <img src="https://framerusercontent.com/images/xlQbNlWRwrdpHlgFQ3zkqZ0iQHM.png?width=494&height=246"
+                alt="Client Logo" />
+            <img src="https://framerusercontent.com/images/ld0Ys8WsQjN1iI1knzyk0CK3cA.png?width=494&height=246"
+                alt="Client Logo" />
+            <img src="https://framerusercontent.com/images/xEDXtnM9wz4iByjkKKxLcuVUE.png?width=494&height=246"
+                alt="Client Logo" />
+            <img src="https://framerusercontent.com/images/sW0rzENbWCTNU9gxplB8irrdOBw.png?width=494&height=246"
+                alt="Client Logo" />
+            <img src=https://framerusercontent.com/images/RiT6Qg7Tf8nBClz0bLs7X3n7fw.png?width=494&height=246"
+                alt="Client Logo" />
+            <img src="https://framerusercontent.com/images/IpPLiEx5qHXVFQwgGeOMcDIgaiM.png?width=494&height=246"
+                alt="Client Logo" />
+            <img src="https://framerusercontent.com/images/xlQbNlWRwrdpHlgFQ3zkqZ0iQHM.png?width=494&height=246"
+                alt="Client Logo" />
+            <img src="https://framerusercontent.com/images/ld0Ys8WsQjN1iI1knzyk0CK3cA.png?width=494&height=246"
+                alt="Client Logo" />
+            <img src="https://framerusercontent.com/images/xEDXtnM9wz4iByjkKKxLcuVUE.png?width=494&height=246"
+                alt="Client Logo" />
+            <img src="https://framerusercontent.com/images/sW0rzENbWCTNU9gxplB8irrdOBw.png?width=494&height=246"
+                alt="Client Logo" />
+            <img src=https://framerusercontent.com/images/RiT6Qg7Tf8nBClz0bLs7X3n7fw.png?width=494&height=246"
+                alt="Client Logo" />
+            <img src="https://framerusercontent.com/images/IpPLiEx5qHXVFQwgGeOMcDIgaiM.png?width=494&height=246"
+                alt="Client Logo" />
+            <img src="https://framerusercontent.com/images/sW0rzENbWCTNU9gxplB8irrdOBw.png?width=494&height=246"
+                alt="Client Logo" />
+            <img src=https://framerusercontent.com/images/RiT6Qg7Tf8nBClz0bLs7X3n7fw.png?width=494&height=246"
+                alt="Client Logo" />
         </div>
 
         <!-- 📊 Stats Box -->
@@ -754,178 +767,224 @@
 
     </section>
 
-    <section class="section py-24 relative overflow-hidden bg-white px-2">
+    <section class="section py-24 relative overflow-hidden px-2">
 
-        <!-- 🌈 Soft Background Glow -->
+        <!-- 🌈 Background -->
         <div class="absolute inset-0 bg-gradient-to-br from-cyan-50 via-white to-orange-100"></div>
 
-        <div class="relative z-10  mx-auto px-6">
+        <div class="relative z-10 mx-auto px-6">
 
             <!-- 🔹 Heading -->
             <h2 class="text-4xl md:text-5xl text-center pb-[60px]">
                 The complete toolkit for <br /> modern advertisers
             </h2>
 
-            <div class=" w-full overflow-hidden">
+            <div class="w-full overflow-hidden">
 
                 <div class="swiper advertisersSwiper">
                     <div class="swiper-wrapper">
 
-                        <!-- Slides -->
+                        <!-- 🔥 CARD -->
                         <div class="swiper-slide">
-                            <div class="bg-white p-4 rounded-[25px] shadow-lg w-[350px]">
+                            <div
+                                class="group bg-white rounded-[25px] shadow-lg w-[350px] overflow-hidden transition-all duration-500 hover:shadow-2xl p-2">
 
-                                <!-- Video -->
-                                <div class="rounded-[20px] overflow-hidden">
-                                    <video class="ad-video w-full h-[400px] object-cover" muted loop playsinline>
+                                <!-- IMAGE WRAPPER -->
+                                <div class="overflow-hidden rounded-[20px] transform translate-y-6 
+                                    transition-all duration-500 group-hover:translate-y-0">
+
+                                    <video
+                                        class="w-full h-[400px] object-cover transition-transform duration-500 group-hover:scale-105"
+                                        muted loop playsinline>
                                         <source src="videos/batch mode.mp4" type="video/mp4">
                                     </video>
                                 </div>
 
-                                <!-- Content -->
-                                <h2 class="text-2xl py-3 font-bold">Ad Corner</h2>
-                                <p class="text-gray-600 text-sm">
-                                    It is a long established fact that a reader will be distracted by the readable
-                                    content.
-                                </p>
+                                <!-- CONTENT -->
+                                <div class="p-4 pt-6 transition-all duration-500">
 
-                            </div>
-                        </div>
+                                    <h2 class="text-2xl mb-2 mt-3">Product Ads</h2>
 
-                        <div class="swiper-slide">
-                            <div class="bg-white p-4 rounded-[25px] shadow-lg w-[350px]">
+                                    <p class="text-gray-600 text-sm opacity-0 translate-y-4 
+                                        transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0">
+                                        Generate high-converting product ads automatically using AI tools.
+                                    </p>
 
-                                <!-- Video -->
-                                <div class="rounded-[20px] overflow-hidden">
-                                    <video class="ad-video w-full h-[400px] object-cover" muted loop playsinline>
-                                        <source src="videos/batch mode.mp4" type="video/mp4">
-                                    </video>
                                 </div>
-
-                                <!-- Content -->
-                                <h2 class="text-2xl py-3 font-bold">Ad Corner</h2>
-                                <p class="text-gray-600 text-sm">
-                                    It is a long established fact that a reader will be distracted by the readable
-                                    content.
-                                </p>
-
-                            </div>
-                        </div>
-
-                        <div class="swiper-slide">
-                            <div class="bg-white p-4 rounded-[25px] shadow-lg w-[350px]">
-
-                                <!-- Video -->
-                                <div class="rounded-[20px] overflow-hidden">
-                                    <video class="ad-video w-full h-[400px] object-cover" muted loop playsinline>
-                                        <source src="videos/batch mode.mp4" type="video/mp4">
-                                    </video>
-                                </div>
-
-                                <!-- Content -->
-                                <h2 class="text-2xl py-3 font-bold">Ad Corner</h2>
-                                <p class="text-gray-600 text-sm">
-                                    It is a long established fact that a reader will be distracted by the readable
-                                    content.
-                                </p>
-
-                            </div>
-                        </div>
-
-                        <div class="swiper-slide">
-                            <div class="bg-white p-4 rounded-[25px] shadow-lg w-[350px]">
-
-                                <!-- Video -->
-                                <div class="rounded-[20px] overflow-hidden">
-                                    <video class="ad-video w-full h-[400px] object-cover" muted loop playsinline>
-                                        <source src="videos/batch mode.mp4" type="video/mp4">
-                                    </video>
-                                </div>
-
-                                <!-- Content -->
-                                <h2 class="text-2xl py-3 font-bold">Ad Corner</h2>
-                                <p class="text-gray-600 text-sm">
-                                    It is a long established fact that a reader will be distracted by the readable
-                                    content.
-                                </p>
 
                             </div>
                         </div>
                         <div class="swiper-slide">
-                            <div class="bg-white p-4 rounded-[25px] shadow-lg w-[350px]">
+                            <div
+                                class="group bg-white rounded-[25px] shadow-lg w-[350px] overflow-hidden transition-all duration-500 hover:shadow-2xl p-2">
 
-                                <!-- Video -->
-                                <div class="rounded-[20px] overflow-hidden">
-                                    <video class="ad-video w-full h-[400px] object-cover" muted loop playsinline>
+                                <!-- IMAGE WRAPPER -->
+                                <div class="overflow-hidden rounded-[20px] transform translate-y-6 
+                                    transition-all duration-500 group-hover:translate-y-0">
+
+                                    <video
+                                        class="w-full h-[400px] object-cover transition-transform duration-500 group-hover:scale-105"
+                                        muted loop playsinline>
                                         <source src="videos/batch mode.mp4" type="video/mp4">
                                     </video>
                                 </div>
 
-                                <!-- Content -->
-                                <h2 class="text-2xl py-3 font-bold">Ad Corner</h2>
-                                <p class="text-gray-600 text-sm">
-                                    It is a long established fact that a reader will be distracted by the readable
-                                    content.
-                                </p>
+                                <!-- CONTENT -->
+                                <div class="p-4 pt-6 transition-all duration-500">
 
-                            </div>
-                        </div>
+                                    <h2 class="text-2xl mb-2 mt-3">Product Ads</h2>
 
-                        <div class="swiper-slide">
-                            <div class="bg-white p-4 rounded-[25px] shadow-lg w-[350px]">
+                                    <p class="text-gray-600 text-sm opacity-0 translate-y-4 
+                                        transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0">
+                                        Generate high-converting product ads automatically using AI tools.
+                                    </p>
 
-                                <!-- Video -->
-                                <div class="rounded-[20px] overflow-hidden">
-                                    <video class="ad-video w-full h-[400px] object-cover" muted loop playsinline>
-                                        <source src="videos/batch mode.mp4" type="video/mp4">
-                                    </video>
                                 </div>
-
-                                <!-- Content -->
-                                <h2 class="text-2xl py-3 font-bold">Ad Corner</h2>
-                                <p class="text-gray-600 text-sm">
-                                    It is a long established fact that a reader will be distracted by the readable
-                                    content.
-                                </p>
-
-                            </div>
-                        </div>
-
-                        <div class="swiper-slide">
-                            <div class="bg-white p-4 rounded-[25px] shadow-lg w-[350px]">
-
-                                <!-- Video -->
-                                <div class="rounded-[20px] overflow-hidden">
-                                    <video class="ad-video w-full h-[400px] object-cover" muted loop playsinline>
-                                        <source src="videos/batch mode.mp4" type="video/mp4">
-                                    </video>
-                                </div>
-
-                                <!-- Content -->
-                                <h2 class="text-2xl py-3 font-bold">Ad Corner</h2>
-                                <p class="text-gray-600 text-sm">
-                                    It is a long established fact that a reader will be distracted by the readable
-                                    content.
-                                </p>
 
                             </div>
                         </div>
                         <div class="swiper-slide">
-                            <div class="bg-white p-4 rounded-[25px] shadow-lg w-[350px]">
+                            <div
+                                class="group bg-white rounded-[25px] shadow-lg w-[350px] overflow-hidden transition-all duration-500 hover:shadow-2xl p-2">
 
-                                <!-- Video -->
-                                <div class="rounded-[20px] overflow-hidden">
-                                    <video class="ad-video w-full h-[400px] object-cover" muted loop playsinline>
+                                <!-- IMAGE WRAPPER -->
+                                <div class="overflow-hidden rounded-[20px] transform translate-y-6 
+                                    transition-all duration-500 group-hover:translate-y-0">
+
+                                    <video
+                                        class="w-full h-[400px] object-cover transition-transform duration-500 group-hover:scale-105"
+                                        muted loop playsinline>
                                         <source src="videos/batch mode.mp4" type="video/mp4">
                                     </video>
                                 </div>
 
-                                <!-- Content -->
-                                <h2 class="text-2xl py-3 font-bold">Ad Corner</h2>
-                                <p class="text-gray-600 text-sm">
-                                    It is a long established fact that a reader will be distracted by the readable
-                                    content.
-                                </p>
+                                <!-- CONTENT -->
+                                <div class="p-4 pt-6 transition-all duration-500">
+
+                                    <h2 class="text-2xl mb-2 mt-3">Product Ads</h2>
+
+                                    <p class="text-gray-600 text-sm opacity-0 translate-y-4 
+                                        transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0">
+                                        Generate high-converting product ads automatically using AI tools.
+                                    </p>
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div
+                                class="group bg-white rounded-[25px] shadow-lg w-[350px] overflow-hidden transition-all duration-500 hover:shadow-2xl p-2">
+
+                                <!-- IMAGE WRAPPER -->
+                                <div class="overflow-hidden rounded-[20px] transform translate-y-6 
+                                    transition-all duration-500 group-hover:translate-y-0">
+
+                                    <video
+                                        class="w-full h-[400px] object-cover transition-transform duration-500 group-hover:scale-105"
+                                        muted loop playsinline>
+                                        <source src="videos/batch mode.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+
+                                <!-- CONTENT -->
+                                <div class="p-4 pt-6 transition-all duration-500">
+
+                                    <h2 class="text-2xl mb-2 mt-3">Product Ads</h2>
+
+                                    <p class="text-gray-600 text-sm opacity-0 translate-y-4 
+                                        transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0">
+                                        Generate high-converting product ads automatically using AI tools.
+                                    </p>
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div
+                                class="group bg-white rounded-[25px] shadow-lg w-[350px] overflow-hidden transition-all duration-500 hover:shadow-2xl p-2">
+
+                                <!-- IMAGE WRAPPER -->
+                                <div class="overflow-hidden rounded-[20px] transform translate-y-6 
+                                    transition-all duration-500 group-hover:translate-y-0">
+
+                                    <video
+                                        class="w-full h-[400px] object-cover transition-transform duration-500 group-hover:scale-105"
+                                        muted loop playsinline>
+                                        <source src="videos/batch mode.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+
+                                <!-- CONTENT -->
+                                <div class="p-4 pt-6 transition-all duration-500">
+
+                                    <h2 class="text-2xl mb-2 mt-3">Product Ads</h2>
+
+                                    <p class="text-gray-600 text-sm opacity-0 translate-y-4 
+                                        transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0">
+                                        Generate high-converting product ads automatically using AI tools.
+                                    </p>
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div
+                                class="group bg-white rounded-[25px] shadow-lg w-[350px] overflow-hidden transition-all duration-500 hover:shadow-2xl p-2">
+
+                                <!-- IMAGE WRAPPER -->
+                                <div class="overflow-hidden rounded-[20px] transform translate-y-6 
+                                    transition-all duration-500 group-hover:translate-y-0">
+
+                                    <video
+                                        class="w-full h-[400px] object-cover transition-transform duration-500 group-hover:scale-105"
+                                        muted loop playsinline>
+                                        <source src="videos/batch mode.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+
+                                <!-- CONTENT -->
+                                <div class="p-4 pt-6 transition-all duration-500">
+
+                                    <h2 class="text-2xl mb-2 mt-3">Product Ads</h2>
+
+                                    <p class="text-gray-600 text-sm opacity-0 translate-y-4 
+                                        transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0">
+                                        Generate high-converting product ads automatically using AI tools.
+                                    </p>
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div
+                                class="group bg-white rounded-[25px] shadow-lg w-[350px] overflow-hidden transition-all duration-500 hover:shadow-2xl p-2">
+
+                                <!-- IMAGE WRAPPER -->
+                                <div class="overflow-hidden rounded-[20px] transform translate-y-6 
+                                    transition-all duration-500 group-hover:translate-y-0">
+
+                                    <video
+                                        class="w-full h-[400px] object-cover transition-transform duration-500 group-hover:scale-105"
+                                        muted loop playsinline>
+                                        <source src="videos/batch mode.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+
+                                <!-- CONTENT -->
+                                <div class="p-4 pt-6 transition-all duration-500">
+
+                                    <h2 class="text-2xl mb-2 mt-3">Product Ads</h2>
+
+                                    <p class="text-gray-600 text-sm opacity-0 translate-y-4 
+                                        transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0">
+                                        Generate high-converting product ads automatically using AI tools.
+                                    </p>
+
+                                </div>
 
                             </div>
                         </div>
@@ -946,7 +1005,7 @@
             <div>
 
                 <!-- Heading -->
-                <h2 class="text-5xl md:text-6xl font-bolder mb-8">
+                <h2 class="text-5xl md:text-6xl  mb-8">
                     Real Results
                 </h2>
 
@@ -1004,7 +1063,7 @@
             <!-- 🔹 Header -->
             <div class="flex items-center justify-between mb-12">
 
-                <h2 class="text-4xl md:text-5xl font-bold">
+                <h2 class="text-4xl md:text-5xl">
                     How Creatify helps real teams
                 </h2>
 
@@ -1030,7 +1089,7 @@
                     <!-- CARD -->
                     <div class="swiper-slide">
 
-                        <div class="bg-white rounded-3xl p-6 shadow-md">
+                        <div class="bg-white rounded-2xl p-6 shadow-md">
 
                             <!-- 🔹 TOP BOX -->
                             <div class="bg-gray-100 rounded-2xl p-5 h-[200px] flex flex-col justify-between">
@@ -1075,7 +1134,7 @@
                     <!-- CARD 2 -->
                     <div class="swiper-slide">
 
-                        <div class="bg-white rounded-3xl p-6 shadow-md">
+                        <div class="bg-white rounded-2xl p-6 shadow-md">
 
                             <!-- 🔹 TOP BOX -->
                             <div class="bg-gray-100 rounded-2xl p-5 h-[200px] flex flex-col justify-between">
@@ -1119,7 +1178,7 @@
 
                     <!-- CARD 3 -->
                     <div class="swiper-slide">
-                        <div class="bg-white rounded-3xl p-6 shadow-md">
+                        <div class="bg-white rounded-2xl p-6 shadow-md">
 
                             <!-- 🔹 TOP BOX -->
                             <div class="bg-gray-100 rounded-2xl p-5 h-[200px] flex flex-col justify-between">
@@ -1161,7 +1220,7 @@
                     </div>
 
                     <div class="swiper-slide">
-                        <div class="bg-white rounded-3xl p-6 shadow-md">
+                        <div class="bg-white rounded-2xl p-6 shadow-md">
 
                             <!-- 🔹 TOP BOX -->
                             <div class="bg-gray-100 rounded-2xl p-5 h-[200px] flex flex-col justify-between">
@@ -1204,7 +1263,7 @@
 
 
                     <div class="swiper-slide">
-                        <div class="bg-white rounded-3xl p-6 shadow-md">
+                        <div class="bg-white rounded-2xl p-6 shadow-md">
 
                             <!-- 🔹 TOP BOX -->
                             <div class="bg-gray-100 rounded-2xl p-5 h-[200px] flex flex-col justify-between">
@@ -1260,7 +1319,7 @@
 
             <!-- 🔹 Heading -->
             <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold mb-4">
+                <h2 class="text-4xl md:text-5xl mb-4">
                     Read the latest
                 </h2>
                 <p class="text-gray-500 text-lg">
@@ -1360,7 +1419,7 @@
         <div class="relative z-10 max-w-7xl mx-auto px-6">
 
             <!-- 🔹 Heading -->
-            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16">
+            <h2 class="text-4xl md:text-5xl text-center mb-16">
                 Trust and compliance
             </h2>
 
@@ -1573,10 +1632,11 @@
 
     <script>
         const advertisersSwiper = new Swiper(".advertisersSwiper", {
-            slidesPerView: 'auto',
-            spaceBetween: 15,
+            slidesPerView: "auto",
+            spaceBetween: 20,
             loop: true,
-
+            centeredSlides: true,
+            grabCursor: true,
             speed: 5000, // 🔥 higher = smoother continuous movement
 
             autoplay: {
