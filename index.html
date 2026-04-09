@@ -27,8 +27,6 @@
                 },
             },
         };
-        console.log("Tailwind Config Loaded", tailwind);
-
     </script>
 
 
@@ -38,7 +36,6 @@
     <style>
         body {
             overflow-x: hidden;
-            font-family: "Roboto", sans-serif;
         }
 
         /* Slider card */
@@ -1761,7 +1758,6 @@
         const sections = document.querySelectorAll(".section");
 
         sections.forEach((section) => {
-            console.log("Setting up animation for section:", section);
             // Initial state
             section.style.opacity = 0;
             section.style.transform = "translateY(50px) scale(0.98)";
