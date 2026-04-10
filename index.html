@@ -8,10 +8,17 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <!-- Google Fonts -->
-    <!-- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"> -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
+    <script type="importmap">
+        {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.module.js"
+        }
+        }
+    </script>
 
+    <script src="https://unpkg.com/lucide@latest"></script>
 
     <!-- ❌ Tailwind CDN (MUST BE AFTER CONFIG) -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -151,178 +158,375 @@
         .wrapper:hover .scroll-down {
             transform: translateY(20%);
         }
+
+        #three-container canvas {
+            width: 100% !important;
+            height: 100% !important;
+            display: block;
+        }
+
+        /* Optional: glow for nodes */
+        .node-glow {
+            filter: blur(20px);
+            opacity: 0.3;
+        }
+
+
+        .agent-item {
+            padding: 14px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .agent-item:hover {
+            background: #f8fafc;
+        }
+
+        .agent-item.active {
+            background: #ecfeff;
+            border: 1px solid #06b6d4;
+            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.15);
+            transform: translateX(4px);
+        }
+
+        .agent-section {
+            padding: 16px;
+            border-radius: 16px;
+            transition: all 0.4s ease;
+        }
+
+        .agent-section.active {
+            background: linear-gradient(135deg, #ecfeff, #f0f9ff);
+            border: 1px solid #06b6d4;
+            box-shadow: 0 10px 40px rgba(6, 182, 212, 0.15);
+            transform: scale(1.02);
+        }
+
+       /* Chrome, Edge, Safari */
+#right-scroll::-webkit-scrollbar {
+    width: 8px;
+}
+
+#right-scroll::-webkit-scrollbar-track {
+    background: #ffffff; /* 👈 white track (invisible feel) */
+}
+
+#right-scroll::-webkit-scrollbar-thumb {
+    background: #cbd5e1; /* light gray thumb */
+    border-radius: 10px;
+}
+
+#right-scroll::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+/* Firefox */
+#right-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e1 #ffffff; /* thumb + track */
+}
     </style>
+
+
 </head>
 
 <body class="bg-white">
 
     <!-- 🔥 HERO -->
-    <section class="text-white min-h-screen section mb-8">
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
 
-        <!-- 🌈 Light Upsworth Gradient -->
+        <!-- 🌈 Background -->
         <div class="absolute inset-0 bg-gradient-to-br from-white via-cyan-50 to-blue-100"></div>
-        <!-- Grain -->
+
+        <!-- Glow -->
         <div class="absolute inset-0 opacity-40"
-            style="background: radial-gradient(circle at center, rgba(0, 200, 255, 0.15), transparent 60%);">
+            style="background: radial-gradient(circle at center, rgba(0,200,255,0.15), transparent 60%);">
         </div>
 
-        <!-- Content -->
-        <div class="relative z-10 flex flex-col items-center text-center px-4 pt-24 pb-16 text-gray-900">
+        <!-- 🧠 THREE CANVAS -->
+        <div id="three-container" class="absolute inset-0 z-0"></div>
+        <!-- 🔥 CENTER CONTENT -->
+        <div class="relative z-10 text-center px-4 max-w-3xl">
 
-            <!-- Small Tagline -->
-            <p class="text-sm text-gray-500 mb-3">
-                Your End-to-End Digital Growth Partner.
-            </p>
-
-            <!-- Heading -->
-            <h1 class="text-5xl md:text-[100px] lg:text-[140px]  leading-tight my-[60px]">
-                AI Ads that <span class="text-cyan-500">win.</span>
+            <h1 class="text-3xl md:text-6xl font-semibold leading-tight text-gray-900">
+                AI agents built <br />
+                <span class="line-through text-gray-400">for</span> by your team
             </h1>
 
-            <!-- Description -->
-            <p class="text-lg md:text-2xl text-gray-600 mb-2">
-                Paste a product URL. Get 10 video ads. Test what converts—automatically.
+            <p class="mt-6 text-gray-600 text-sm md:text-base">
+                Understanding a task should be the only prerequisite to automating it.
             </p>
 
-            <p class="text-sm text-gray-400 mb-10">
-                (yes, it’s really that simple)
-            </p>
+            <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+                <button class="bg-cyan-500 text-white px-6 py-3 rounded-xl shadow-lg">
+                    Get Started
+                </button>
 
-            <!-- CTA -->
-
-
-            <button
-                class="relative overflow-hidden group flex items-center gap-2 px-2 py-1 bg-black rounded border-4 border-black">
-
-                <!-- Sliding BG -->
-                <span class="absolute inset-0 bg-cyan-500 
-                  translate-x-[-100%] group-hover:translate-x-0 
-                  transition-transform duration-500 ease-in-out">
-                </span>
-
-                <!-- Icon -->
-                <span class="relative z-10 bg-cyan-500 w-12 h-12 flex items-center justify-center rounded text-white">
-                    ➤
-                </span>
-
-                <!-- Text -->
-                <span class="relative z-10 text-white text-xs md:text-sm font-medium tracking-widest">
-                    CREATE YOUR FIRST AD FREE
-                </span>
-
-            </button>
-
-            <!-- Bottom Info -->
-            <div class="flex flex-wrap justify-center gap-6 mt-6 mb-6 text-sm text-gray-500">
-                <span>✔ No credit card required</span>
-                <span>⭐ Rated 4.8/5 on G2</span>
+                <button class="border border-gray-300 px-6 py-3 rounded-xl text-gray-700 bg-white/70 backdrop-blur">
+                    Talk to Sales
+                </button>
             </div>
 
         </div>
-        <div class=" relative w-full overflow-hidden">
 
-            <!-- Arrows -->
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div>
+    </section>
 
-            <div class="swiper mySwiper  px-6">
-                <div class="swiper-wrapper">
+    <section class="py-16 md:py-24 bg-white">
 
-                    <!-- Slides -->
-                    <div class="swiper-slide">
-                        <div class="card">
-                            <div class="rounded-[20px] overflow-hidden">
-                                <video class=" w-full h-[400px] object-cover" autoplay muted loop playsinline>
-                                    <source src="videos/batch mode.mp4" type="video/mp4">
-                                </video>
-                            </div>
-                            <span>AI GENERATED</span>
+        <div class="max-w-7xl mx-auto px-4 md:px-6 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+
+            <!-- 🔹 LEFT -->
+            <div>
+
+                <h2 class="text-3xl md:text-5xl mb-10">
+                    Roll out specialized <br /> agents in minutes
+                </h2>
+
+                <div class="space-y-2">
+
+                    <!-- 1 -->
+                    <div class="agent-item active" data-target="section-data">
+                        <div class="flex items-center gap-3">
+                            <div class="icon-box bg-cyan-100 text-cyan-600">📊</div>
+                            <span>Data Analysis Agent</span>
                         </div>
                     </div>
 
-                    <div class="swiper-slide">
-                        <div class="card">
-                            <video class="w-full h-[400px] object-cover" autoplay muted loop playsinline>
-                                <source src="videos/avatar.mp4" type="video/mp4">
-                            </video>
-                            <span>AI GENERATED</span>
+                    <!-- 2 -->
+                    <div class="agent-item" data-target="section-support">
+                        <div class="flex items-center gap-3">
+                            <div class="icon-box bg-gray-100">🐞</div>
+                            <span>Support Agent</span>
                         </div>
                     </div>
 
-                    <div class="swiper-slide">
-                        <div class="card">
-                            <video class="w-full h-[400px] object-cover" autoplay muted loop playsinline>
-                                <source src="videos/asset gen.mp4" type="video/mp4">
-                            </video>
-                            <span>AI GENERATED</span>
+                    <!-- 3 -->
+                    <div class="agent-item" data-target="section-crm">
+                        <div class="flex items-center gap-3">
+                            <div class="icon-box bg-gray-100">📈</div>
+                            <span>CRM Agent</span>
                         </div>
                     </div>
 
-                    <div class="swiper-slide">
-                        <div class="card">
-                            <div class="rounded-[20px] overflow-hidden">
-                                <video class=" w-full h-[400px] object-cover" autoplay muted loop playsinline>
-                                    <source src="videos/batch mode.mp4" type="video/mp4">
-                                </video>
-                            </div>
-                            <span>AI GENERATED</span>
+                    <!-- 🔥 NEW 4 -->
+                    <div class="agent-item" data-target="section-meeting">
+                        <div class="flex items-center gap-3">
+                            <div class="icon-box bg-gray-100">🧠</div>
+                            <span>Meeting Prep Agent</span>
                         </div>
                     </div>
 
-                    <div class="swiper-slide">
-                        <div class="card">
-                            <video class="w-full h-[400px] object-cover" autoplay muted loop playsinline>
-                                <source src="videos/avatar.mp4" type="video/mp4">
-                            </video>
-                            <span>AI GENERATED</span>
+                    <!-- 🔥 NEW 5 -->
+                    <div class="agent-item" data-target="section-call">
+                        <div class="flex items-center gap-3">
+                            <div class="icon-box bg-gray-100">📞</div>
+                            <span>Call Analysis Agent</span>
                         </div>
                     </div>
 
-                    <div class="swiper-slide">
-                        <div class="card">
-                            <video class="w-full h-[400px] object-cover" autoplay muted loop playsinline>
-                                <source src="videos/asset gen.mp4" type="video/mp4">
-                            </video>
-                            <span>AI GENERATED</span>
-                        </div>
+                </div>
+
+            </div>
+
+            <!-- 🔹 RIGHT -->
+            <div class="relative pt-8 rounded">
+
+                <!-- Background -->
+                <div class="absolute inset-0 bg-gradient-to-br from-white via-cyan-50 to-blue-100 rounded"></div>
+
+                <!-- SCROLLABLE CONTENT -->
+                <div id="right-scroll"
+                    class="relative bg-white/70 backdrop-blur-xl rounded shadow-[0_20px_60px_rgba(0,0,0,0.08)] p-6 max-w-md mx-auto h-[600px] overflow-y-auto space-y-8 border border-white/40 -bottom-5">
+
+                    <!-- SECTION 1 -->
+                    <div id="section-data" class="agent-section">
+                        <h3 class="font-semibold mb-2">📊 Data Analysis</h3>
+                        <p class="text-sm text-gray-600 mb-2">
+                            Users drop at onboarding step. Biggest issue found in integration stage.
+                        </p>
+                        <p class="text-sm text-gray-600 mb-2">
+                            Conversion rate dropped by 18% in the last 7 days. Most users exit after API key generation.
+                        </p>
+                        <ul class="text-sm text-gray-600 list-disc pl-5 space-y-1">
+                            <li>Step 1 completion: 92%</li>
+                            <li>Step 2 completion: 74%</li>
+                            <li>Step 3 completion: 41%</li>
+                        </ul>
                     </div>
 
-                    <div class="swiper-slide">
-                        <div class="card">
-                            <div class="rounded-[20px] overflow-hidden">
-                                <video class=" w-full h-[400px] object-cover" autoplay muted loop playsinline>
-                                    <source src="videos/batch mode.mp4" type="video/mp4">
-                                </video>
-                            </div>
-                            <span>AI GENERATED</span>
-                        </div>
+                    <!-- SECTION 2 -->
+                    <div id="section-support" class="agent-section">
+                        <h3 class="font-semibold mb-2">🐞 Support Agent</h3>
+                        <p class="text-sm text-gray-600 mb-2">
+                            Bug created for CSV export issue. Assigned to engineering team.
+                        </p>
+                        <p class="text-sm text-gray-600 mb-2">
+                            Users reported timeout errors while exporting large datasets.
+                        </p>
+                        <ul class="text-sm text-gray-600 list-disc pl-5 space-y-1">
+                            <li>Priority: High</li>
+                            <li>Status: In Progress</li>
+                            <li>ETA: 2 days</li>
+                        </ul>
                     </div>
 
-                    <div class="swiper-slide">
-                        <div class="card">
-                            <video class="w-full h-[400px] object-cover" autoplay muted loop playsinline>
-                                <source src="videos/avatar.mp4" type="video/mp4">
-                            </video>
-                            <span>AI GENERATED</span>
-                        </div>
+                    <!-- SECTION 3 -->
+                    <div id="section-crm" class="agent-section">
+                        <h3 class="font-semibold mb-2">📈 CRM Agent</h3>
+                        <p class="text-sm text-gray-600 mb-2">
+                            Pipeline value reached $2.4M across all deals.
+                        </p>
+                        <p class="text-sm text-gray-600 mb-2">
+                            14 deals expected to close this month with high probability.
+                        </p>
+                        <ul class="text-sm text-gray-600 list-disc pl-5 space-y-1">
+                            <li>Hot Leads: 32</li>
+                            <li>Qualified Leads: 58</li>
+                            <li>Cold Leads: 21</li>
+                        </ul>
                     </div>
 
-                    <div class="swiper-slide">
-                        <div class="card">
-                            <video class="w-full h-[400px] object-cover" autoplay muted loop playsinline>
-                                <source src="videos/asset gen.mp4" type="video/mp4">
-                            </video>
-                            <span>AI GENERATED</span>
-                        </div>
+                    <!-- SECTION 4 -->
+                    <div id="section-meeting" class="agent-section">
+                        <h3 class="font-semibold mb-2">🧠 Meeting Prep</h3>
+                        <p class="text-sm text-gray-600 mb-2">
+                            Generated meeting insights and key talking points.
+                        </p>
+                        <p class="text-sm text-gray-600 mb-2">
+                            Focus areas include pricing strategy, onboarding friction, and feature adoption.
+                        </p>
+                        <ul class="text-sm text-gray-600 list-disc pl-5 space-y-1">
+                            <li>Discuss churn reasons</li>
+                            <li>Highlight product updates</li>
+                            <li>Review Q2 roadmap</li>
+                        </ul>
                     </div>
 
+                    <!-- SECTION 5 -->
+                    <div id="section-call" class="agent-section">
+                        <h3 class="font-semibold mb-2">📞 Call Analysis</h3>
+                        <p class="text-sm text-gray-600 mb-2">
+                            Sentiment positive. Customer interested in upgrade.
+                        </p>
+                        <p class="text-sm text-gray-600 mb-2">
+                            Customer showed interest in enterprise plan and custom integrations.
+                        </p>
+                        <ul class="text-sm text-gray-600 list-disc pl-5 space-y-1">
+                            <li>Sentiment Score: 8.7/10</li>
+                            <li>Next Follow-up: Tomorrow</li>
+                            <li>Upsell Probability: High</li>
+                        </ul>
+                    </div>
 
                 </div>
             </div>
-
         </div>
+
     </section>
 
+    <div class=" relative w-full overflow-hidden">
+
+        <!-- Arrows -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+
+        <div class="swiper mySwiper  px-6">
+            <div class="swiper-wrapper">
+
+                <!-- Slides -->
+                <div class="swiper-slide">
+                    <div class="card">
+                        <div class="rounded-[20px] overflow-hidden">
+                            <video class=" w-full h-[400px] object-cover" autoplay muted loop playsinline>
+                                <source src="videos/batch mode.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <span>AI GENERATED</span>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="card">
+                        <video class="w-full h-[400px] object-cover" autoplay muted loop playsinline>
+                            <source src="videos/avatar.mp4" type="video/mp4">
+                        </video>
+                        <span>AI GENERATED</span>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="card">
+                        <video class="w-full h-[400px] object-cover" autoplay muted loop playsinline>
+                            <source src="videos/asset gen.mp4" type="video/mp4">
+                        </video>
+                        <span>AI GENERATED</span>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="card">
+                        <div class="rounded-[20px] overflow-hidden">
+                            <video class=" w-full h-[400px] object-cover" autoplay muted loop playsinline>
+                                <source src="videos/batch mode.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <span>AI GENERATED</span>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="card">
+                        <video class="w-full h-[400px] object-cover" autoplay muted loop playsinline>
+                            <source src="videos/avatar.mp4" type="video/mp4">
+                        </video>
+                        <span>AI GENERATED</span>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="card">
+                        <video class="w-full h-[400px] object-cover" autoplay muted loop playsinline>
+                            <source src="videos/asset gen.mp4" type="video/mp4">
+                        </video>
+                        <span>AI GENERATED</span>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="card">
+                        <div class="rounded-[20px] overflow-hidden">
+                            <video class=" w-full h-[400px] object-cover" autoplay muted loop playsinline>
+                                <source src="videos/batch mode.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <span>AI GENERATED</span>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="card">
+                        <video class="w-full h-[400px] object-cover" autoplay muted loop playsinline>
+                            <source src="videos/avatar.mp4" type="video/mp4">
+                        </video>
+                        <span>AI GENERATED</span>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="card">
+                        <video class="w-full h-[400px] object-cover" autoplay muted loop playsinline>
+                            <source src="videos/asset gen.mp4" type="video/mp4">
+                        </video>
+                        <span>AI GENERATED</span>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
     <section class="section md:p-24 md:pt-8 text-2xl bg-white">
 
         <!-- 🔹 Heading -->
@@ -1590,251 +1794,6 @@
     </section>
 
 
-    <section class="section py-24 bg-white">
-
-        <div class="max-w-7xl mx-auto px-6">
-
-            <!-- 🔹 Heading -->
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl mb-4">
-                    Read the latest
-                </h2>
-                <p class="text-gray-500 text-lg">
-                    Ideas, insights, and creative tips from the Creatify team.
-                </p>
-            </div>
-
-            <!-- 🔥 Blog Grid -->
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-                <!-- CARD -->
-                <div class="group">
-
-                    <!-- Image -->
-                    <div class="rounded-2xl overflow-hidden">
-                        <img src="https://picsum.photos/600/350"
-                            class="w-full h-[220px] object-cover group-hover:scale-105 transition duration-500" />
-                    </div>
-
-                    <!-- Tag -->
-                    <span class="inline-block mt-4 bg-cyan-100 text-cyan-600 text-xs px-3 py-1 rounded-full">
-                        VIDEO MARKETING
-                    </span>
-
-                    <!-- Title -->
-                    <h3 class="text-xl font-semibold mt-4 leading-snug group-hover:text-cyan-600 transition">
-                        8 top D-ID competitors & alternatives in 2026
-                    </h3>
-
-                    <!-- Date -->
-                    <div class="flex items-center gap-2 mt-4 text-gray-500 text-sm">
-                        <span class="text-cyan-500">➤</span>
-                        <span>Mar 23, 2026</span>
-                    </div>
-
-                </div>
-
-
-                <!-- CARD 2 -->
-                <div class="group">
-
-                    <div class="rounded-2xl overflow-hidden">
-                        <img src="https://picsum.photos/601/350"
-                            class="w-full h-[220px] object-cover group-hover:scale-105 transition duration-500" />
-                    </div>
-
-                    <span class="inline-block mt-4 bg-cyan-100 text-cyan-600 text-xs px-3 py-1 rounded-full">
-                        VIDEO MARKETING
-                    </span>
-
-                    <h3 class="text-xl font-semibold mt-4 leading-snug group-hover:text-cyan-600 transition">
-                        Dropshipping in 2026: the one bottleneck that automation still hasn't touched
-                    </h3>
-
-                    <div class="flex items-center gap-2 mt-4 text-gray-500 text-sm">
-                        <span class="text-cyan-500">➤</span>
-                        <span>Mar 19, 2026</span>
-                    </div>
-
-                </div>
-
-
-                <!-- CARD 3 -->
-                <div class="group">
-
-                    <div class="rounded-2xl overflow-hidden">
-                        <img src="https://picsum.photos/602/350"
-                            class="w-full h-[220px] object-cover group-hover:scale-105 transition duration-500" />
-                    </div>
-
-                    <span class="inline-block mt-4 bg-cyan-100 text-cyan-600 text-xs px-3 py-1 rounded-full">
-                        VIDEO MARKETING
-                    </span>
-
-                    <h3 class="text-xl font-semibold mt-4 leading-snug group-hover:text-cyan-600 transition">
-                        What is UGC content? Meaning, examples, and tips for marketers
-                    </h3>
-
-                    <div class="flex items-center gap-2 mt-4 text-gray-500 text-sm">
-                        <span class="text-cyan-500">➤</span>
-                        <span>Mar 17, 2026</span>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-    <section class="section py-16 md:py-24 relative overflow-hidden bg-white">
-
-        <!-- Background -->
-        <div class="absolute inset-0 bg-gradient-to-br from-cyan-50 via-white to-orange-100"></div>
-
-        <div class="relative z-10 max-w-7xl mx-auto px-4 md:px-6">
-
-            <!-- Heading -->
-            <h2 class="text-2xl md:text-5xl text-center mb-10 md:mb-16">
-                Trust and compliance
-            </h2>
-
-            <!-- 🔥 TOP GRID -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-6">
-
-                <!-- CARD -->
-                <div class="bg-white rounded-3xl p-5 md:p-6 shadow border">
-                    <h3 class="text-lg md:text-xl font-semibold mb-2 md:mb-3">Industry</h3>
-                    <p class="text-gray-500 text-sm mb-4 md:mb-6">
-                        We’ve earned 40+ badges and hold a 4.8/5 rating on G2.
-                    </p>
-
-                    <div class="flex gap-2 md:gap-3 mb-4 md:mb-6 flex-wrap">
-                        <img src="https://picsum.photos/60" class="h-12 md:h-16 rounded-lg" />
-                        <img src="https://picsum.photos/61" class="h-12 md:h-16 rounded-lg" />
-                        <img src="https://picsum.photos/62" class="h-12 md:h-16 rounded-lg" />
-                        <img src="https://picsum.photos/63" class="h-12 md:h-16 rounded-lg" />
-                    </div>
-
-                    <a href="#" class="text-cyan-600 text-sm font-medium">LEARN MORE →</a>
-                </div>
-
-                <!-- CARD 2 -->
-                <div class="bg-white rounded-3xl p-5 md:p-6 shadow border">
-                    <h3 class="text-lg md:text-xl font-semibold mb-2 md:mb-3">Media</h3>
-                    <p class="text-gray-500 text-sm mb-4 md:mb-6">
-                        Featured in Fast Company, Bloomberg, and TechCrunch.
-                    </p>
-
-                    <div class="flex gap-2 md:gap-4 mb-4 md:mb-6">
-                        <img src="https://picsum.photos/50" class="h-12 md:h-16 rounded-full" />
-                        <img src="https://picsum.photos/51" class="h-12 md:h-16 rounded-full" />
-                        <img src="https://picsum.photos/52" class="h-12 md:h-16 rounded-full" />
-                    </div>
-
-                    <a href="#" class="text-cyan-600 text-sm font-medium">LEARN MORE →</a>
-                </div>
-
-                <!-- CARD 3 -->
-                <div class="bg-white rounded-3xl p-5 md:p-6 shadow border">
-                    <h3 class="text-lg md:text-xl font-semibold mb-2 md:mb-3">Compliance</h3>
-                    <p class="text-gray-500 text-sm mb-4 md:mb-6">
-                        Enterprise-grade security including SOC 2 Type II.
-                    </p>
-
-                    <img src="https://picsum.photos/80" class="h-12 md:h-16 mb-4 md:mb-6" />
-
-                    <a href="#" class="text-cyan-600 text-sm font-medium">DOWNLOAD →</a>
-                </div>
-
-            </div>
-
-            <!-- 🔥 SECOND GRID -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-
-                <!-- CARD 4 -->
-                <div class="bg-white rounded-3xl p-5 md:p-6 border shadow-md">
-                    <h3 class="text-xl md:text-2xl font-semibold mb-2 md:mb-3">
-                        Compatible with Platforms
-                    </h3>
-                    <p class="text-gray-500 text-sm mb-4 md:mb-6">
-                        Works with Meta, TikTok, YouTube, Snap, Amazon and more.
-                    </p>
-
-                    <!-- Icons -->
-                    <div class="flex items-center mb-6 overflow-x-auto gap-2">
-
-                        <div class="w-12 h-12 md:w-16 md:h-16 rounded-full overflow-hidden border-4 border-white">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Meta_Platforms_Logo.svg"
-                                class="w-full h-full object-cover" />
-                        </div>
-
-                        <div class="w-12 h-12 md:w-16 md:h-16 rounded-full overflow-hidden border-4 border-white">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/Adobe_Creative_Cloud_rainbow_icon.svg"
-                                class="w-full h-full object-cover" />
-                        </div>
-
-                        <div class="w-12 h-12 md:w-16 md:h-16 rounded-full overflow-hidden border-4 border-white">
-                            <img src="https://upload.wikimedia.org/wikipedia/en/a/a9/TikTok_logo.svg"
-                                class="w-full h-full object-cover" />
-                        </div>
-
-                        <div class="w-12 h-12 md:w-16 md:h-16 rounded-full overflow-hidden border-4 border-white">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png"
-                                class="w-full h-full object-cover" />
-                        </div>
-
-                        <div class="w-12 h-12 md:w-16 md:h-16 rounded-full overflow-hidden border-4 border-white">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg"
-                                class="w-full h-full object-cover" />
-                        </div>
-
-                    </div>
-
-                    <a href="#" class="text-cyan-600 text-sm font-medium">LEARN MORE →</a>
-                </div>
-
-                <!-- CARD 5 -->
-                <div class="bg-white rounded-3xl p-5 md:p-6 shadow-md border">
-                    <h3 class="text-xl md:text-2xl font-semibold mb-2 md:mb-3">Investors</h3>
-                    <p class="text-gray-500 text-sm mb-4 md:mb-6">
-                        Backed by top investors like WndrCo and Comcast Ventures.
-                    </p>
-
-                    <div class="flex items-center mb-6 overflow-x-auto gap-2">
-                        <!-- same icons -->
-                        <div class="w-12 h-12 md:w-16 md:h-16 rounded-full overflow-hidden border-4 border-white">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Meta_Platforms_Logo.svg"
-                                class="w-full h-full object-cover" />
-                        </div>
-                        <div class="w-12 h-12 md:w-16 md:h-16 rounded-full overflow-hidden border-4 border-white">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/Adobe_Creative_Cloud_rainbow_icon.svg"
-                                class="w-full h-full object-cover" />
-                        </div>
-                        <div class="w-12 h-12 md:w-16 md:h-16 rounded-full overflow-hidden border-4 border-white">
-                            <img src="https://upload.wikimedia.org/wikipedia/en/a/a9/TikTok_logo.svg"
-                                class="w-full h-full object-cover" />
-                        </div>
-                        <div class="w-12 h-12 md:w-16 md:h-16 rounded-full overflow-hidden border-4 border-white">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png"
-                                class="w-full h-full object-cover" />
-                        </div>
-                        <div class="w-12 h-12 md:w-16 md:h-16 rounded-full overflow-hidden border-4 border-white">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg"
-                                class="w-full h-full object-cover" />
-                        </div>
-                    </div>
-
-                    <a href="#" class="text-cyan-600 text-sm font-medium">LEARN MORE →</a>
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
@@ -2028,6 +1987,244 @@
         }, { threshold: 0.4 });
 
         observer.observe(document.querySelector("#counter1"));
+    </script>
+
+    <script type="module">
+        const container = document.getElementById("three-container");
+
+        if (!container) {
+            console.error("Container not found ❌");
+        }
+        import * as THREE from "three";
+        // SCENE
+        const scene = new THREE.Scene();
+
+        // CAMERA
+        const camera = new THREE.PerspectiveCamera(
+            75,
+            container.clientWidth / container.clientHeight,
+            0.1,
+            1000
+        );
+        camera.position.z = 5;
+
+        // RENDERER
+        const renderer = new THREE.WebGLRenderer({
+            alpha: true,
+            antialias: true,
+        });
+        renderer.setSize(container.clientWidth, container.clientHeight);
+        container.appendChild(renderer.domElement);
+
+        // CENTER NODE
+        const center = new THREE.Mesh(
+            new THREE.SphereGeometry(0.3, 32, 32),
+            new THREE.MeshBasicMaterial({ color: 0xd1d5db })
+        );
+        scene.add(center);
+
+        // 🔥 ICON URLs
+        const iconUrls = [
+            "https://cdn.simpleicons.org/slack",
+            "https://cdn.simpleicons.org/gmail",
+            "https://cdn.simpleicons.org/notion",
+            "https://cdn.simpleicons.org/github",
+            "https://cdn.simpleicons.org/figma",
+            "https://cdn.simpleicons.org/google"
+        ];
+
+        // LOADER
+        const loader = new THREE.TextureLoader();
+
+        // ITEMS
+        const items = [];
+        const radius = 2.2;
+
+        iconUrls.forEach((url, i) => {
+            const texture = loader.load(url);
+
+            const material = new THREE.SpriteMaterial({
+                map: texture,
+                transparent: true,
+            });
+
+            const sprite = new THREE.Sprite(material);
+
+            // ICON SIZE
+            sprite.scale.set(0.5, 0.5, 1);
+
+            // GLOW EFFECT
+            const glowMaterial = new THREE.SpriteMaterial({
+                color: 0x00c8ff,
+                transparent: true,
+                opacity: 0.15,
+            });
+
+            const glow = new THREE.Sprite(glowMaterial);
+            glow.scale.set(0.8, 0.8, 1);
+
+            sprite.add(glow);
+
+            sprite.userData = {
+                angle: (i / iconUrls.length) * Math.PI * 2,
+                speed: 0.003 + Math.random() * 0.002,
+                offset: Math.random() * 1000,
+            };
+
+            scene.add(sprite);
+            items.push(sprite);
+        });
+
+        // 🔗 LINES (network feel)
+        const lines = [];
+
+        items.forEach((item) => {
+            const material = new THREE.LineBasicMaterial({
+                color: 0xe5e7eb,
+                transparent: true,
+                opacity: 0.4,
+            });
+
+            const geometry = new THREE.BufferGeometry().setFromPoints([
+                new THREE.Vector3(0, 0, 0),
+                new THREE.Vector3(0, 0, 0),
+            ]);
+
+            const line = new THREE.Line(geometry, material);
+            scene.add(line);
+
+            lines.push({ line, item });
+        });
+
+        // 🎬 ANIMATION LOOP
+        function animate() {
+            requestAnimationFrame(animate);
+
+            const time = Date.now() * 0.001;
+
+            items.forEach((item) => {
+                item.userData.angle += item.userData.speed;
+
+                const x = Math.cos(item.userData.angle) * radius;
+                const y = Math.sin(item.userData.angle) * radius;
+
+                const float = Math.sin(time + item.userData.offset) * 0.2;
+
+                item.position.set(x, y + float, 0);
+            });
+
+            // UPDATE LINES
+            lines.forEach(({ line, item }) => {
+                const pos = line.geometry.attributes.position.array;
+
+                pos[0] = 0;
+                pos[1] = 0;
+                pos[2] = 0;
+
+                pos[3] = item.position.x;
+                pos[4] = item.position.y;
+                pos[5] = item.position.z;
+
+                line.geometry.attributes.position.needsUpdate = true;
+            });
+
+            renderer.render(scene, camera);
+        }
+
+        animate();
+
+        // 📱 RESPONSIVE
+        window.addEventListener("resize", () => {
+            const width = container.clientWidth;
+            const height = container.clientHeight;
+
+            renderer.setSize(width, height);
+            camera.aspect = width / height;
+            camera.updateProjectionMatrix();
+        });
+    </script>
+
+    <script>
+        const itemsN = document.querySelectorAll(".agent-item");
+        const sectionsN = document.querySelectorAll(".agent-section");
+        const containerN = document.getElementById("right-scroll");
+
+        // 👉 CLICK
+        itemsN.forEach(item => {
+            item.addEventListener("click", () => {
+
+                itemsN.forEach(i => i.classList.remove("active"));
+                item.classList.add("active");
+
+                const targetId = item.dataset.target;
+                const target = document.getElementById(targetId);
+
+                containerN.scrollTo({
+                    top: target.offsetTop - containerN.offsetTop - 80,
+                    behavior: "smooth"
+                });
+            });
+        });
+
+        // 🚀 SCROLL SYNC (LEFT + RIGHT ACTIVE)
+        containerN.addEventListener("scroll", () => {
+
+            let currentSection = "";
+
+            sectionsN.forEach(section => {
+                const sectionTop = section.offsetTop - 150;
+                const scrollTop = containerN.scrollTop;
+
+                if (scrollTop >= sectionTop) {
+                    currentSection = section.getAttribute("id");
+                }
+            });
+
+            // 👉 LEFT ACTIVE
+            itemsN.forEach(item => {
+                item.classList.remove("active");
+                if (item.dataset.target === currentSection) {
+                    item.classList.add("active");
+                }
+            });
+
+            // 👉 RIGHT ACTIVE (🔥 NEW)
+            sectionsN.forEach(sec => {
+                sec.classList.remove("active");
+                if (sec.id === currentSection) {
+                    sec.classList.add("active");
+                }
+            });
+
+        });
+    </script>
+
+    <script>
+        window.addEventListener("DOMContentLoaded", () => {
+
+            const firstItem = document.querySelector(".agent-item.active");
+
+            if (firstItem) {
+                const targetId = firstItem.dataset.target;
+                const target = document.getElementById(targetId);
+
+                // scroll to first section
+                containerN.scrollTo({
+                    top: target.offsetTop - containerN.offsetTop - 80,
+                    behavior: "instant"
+                });
+
+                // highlight first section
+                sectionsN.forEach(sec => sec.classList.remove("active"));
+                target.classList.add("active");
+
+                // remove highlight after delay (optional)
+                setTimeout(() => {
+                    target.classList.remove("active");
+                }, 2000);
+            }
+
+        });
     </script>
 </body>
 
