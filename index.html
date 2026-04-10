@@ -190,10 +190,15 @@
             transform: translateX(4px);
         }
 
+
+
         .agent-section {
+            border: 1px solid #e5e7eb;
+            /* 👈 light gray */
+            border-radius: 12px;
             padding: 16px;
-            border-radius: 16px;
-            transition: all 0.4s ease;
+            transition: all 0.3s ease;
+            background: #ffffff;
         }
 
         .agent-section.active {
@@ -203,29 +208,32 @@
             transform: scale(1.02);
         }
 
-       /* Chrome, Edge, Safari */
-#right-scroll::-webkit-scrollbar {
-    width: 8px;
-}
+        /* Chrome, Edge, Safari */
+        #right-scroll::-webkit-scrollbar {
+            width: 8px;
+        }
 
-#right-scroll::-webkit-scrollbar-track {
-    background: #ffffff; /* 👈 white track (invisible feel) */
-}
+        #right-scroll::-webkit-scrollbar-track {
+            background: #ffffff;
+            /* 👈 white track (invisible feel) */
+        }
 
-#right-scroll::-webkit-scrollbar-thumb {
-    background: #cbd5e1; /* light gray thumb */
-    border-radius: 10px;
-}
+        #right-scroll::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            /* light gray thumb */
+            border-radius: 10px;
+        }
 
-#right-scroll::-webkit-scrollbar-thumb:hover {
-    background: #94a3b8;
-}
+        #right-scroll::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
 
-/* Firefox */
-#right-scroll {
-    scrollbar-width: thin;
-    scrollbar-color: #cbd5e1 #ffffff; /* thumb + track */
-}
+        /* Firefox */
+        #right-scroll {
+            scrollbar-width: thin;
+            scrollbar-color: #cbd5e1 #ffffff;
+            /* thumb + track */
+        }
     </style>
 
 
@@ -333,8 +341,8 @@
             <div class="relative pt-8 rounded">
 
                 <!-- Background -->
-                <div class="absolute inset-0 bg-gradient-to-br from-white via-cyan-50 to-blue-100 rounded"></div>
-
+                <div class="absolute inset-0 bg-gradient-to-br from-slate-100 via-cyan-100/80 to-blue-200/90 rounded">
+                </div>
                 <!-- SCROLLABLE CONTENT -->
                 <div id="right-scroll"
                     class="relative bg-white/70 backdrop-blur-xl rounded shadow-[0_20px_60px_rgba(0,0,0,0.08)] p-6 max-w-md mx-auto h-[600px] overflow-y-auto space-y-8 border border-white/40 -bottom-5">
@@ -2176,11 +2184,19 @@
                 const scrollTop = containerN.scrollTop;
 
                 if (scrollTop >= sectionTop) {
-                    currentSection = section.getAttribute("id");
+                    currentSection = section.id;
                 }
             });
 
-            // 👉 LEFT ACTIVE
+            // ✅ FIX: Last section detection
+            if (
+                containerN.scrollTop + containerN.clientHeight >=
+                containerN.scrollHeight - 5
+            ) {
+                currentSection = sectionsN[sectionsN.length - 1].id;
+            }
+
+            // LEFT ACTIVE
             itemsN.forEach(item => {
                 item.classList.remove("active");
                 if (item.dataset.target === currentSection) {
@@ -2188,7 +2204,7 @@
                 }
             });
 
-            // 👉 RIGHT ACTIVE (🔥 NEW)
+            // RIGHT ACTIVE
             sectionsN.forEach(sec => {
                 sec.classList.remove("active");
                 if (sec.id === currentSection) {
